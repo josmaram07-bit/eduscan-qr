@@ -1,0 +1,23 @@
+INSTALAR EDUSCAN QR OMR PRO 2026 EN EL iPHONE (ICONO EN PANTALLA DE INICIO)
+
+PASO 1 · PUBLICAR LA CARPETA EN UNA DIRECCIÓN HTTPS (una sola vez, gratis)
+iOS solo instala apps web desde una dirección https://. No funciona abriendo index.html desde Archivos ni desde un correo.
+Opciones sencillas (elige una):
+  A) Netlify Drop: entra a app.netlify.com/drop, arrastra la carpeta "EduScan_PWA" completa y obtendrás una dirección https://….netlify.app
+  B) Cloudflare Pages: Workers y Pages > Crear > Pages > "Carga directa" > sube la carpeta.
+  C) GitHub Pages: sube el contenido de la carpeta a un repositorio y activa Pages (Settings > Pages).
+Sube TODO: index.html, manifest.webmanifest, service-worker.js, la carpeta icons y los archivos _headers y .nojekyll. No cambies nombres.
+
+PASO 2 · INSTALAR EN EL iPHONE
+1. Abre la dirección https:// en SAFARI.
+2. Toca el botón Compartir (cuadro con flecha hacia arriba).
+3. Elige "Añadir a pantalla de inicio" (si hace falta, desliza el menú hacia abajo).
+4. Deja activado "Abrir como app web" y pulsa "Añadir".
+5. Abre EduScan desde su icono. La primera vez, con conexión a internet, para que guarde los archivos; después abre también sin conexión.
+
+DATOS IMPORTANTES
+- La app instalada tiene su PROPIO almacenamiento, separado de Safari: lo que capturaste en Safari antes de instalarla no aparece en el icono. Usa "Exportar respaldo" en uno e "Importar" en el otro.
+- Exporta un respaldo JSON con frecuencia; iOS puede borrar datos de sitios web si el iPhone se queda sin espacio.
+- Para actualizar la app: reemplaza los archivos en el alojamiento, abre la app con internet y ciérrala por completo una vez (deslizar hacia arriba) para que cargue la versión nueva.
+- Descargar PDF y CSV desde la app instalada puede abrir una vista previa: usa Compartir > Guardar en Archivos. Imprimir requiere impresora compatible con AirPrint.
+- Si cambias el nombre del examen, el total o la distribución de campos, vuelve a imprimir las hojas (el QR lleva esa información).

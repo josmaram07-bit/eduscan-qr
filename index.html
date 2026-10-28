@@ -1,0 +1,1651 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#142d4e">
+<meta name="description" content="EduScan QR OMR Pro 2026: gestión de exámenes, hojas OMR, escaneo y calificación.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="EduScan OMR">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<title>EduScan QR OMR Pro 2026</title>
+<style>
+:root{--navy:#142d4e;--indigo:#4338ca;--blue:#2563eb;--teal:#0f9f8f;--bg:#f3f6fb;--ink:#172033;--muted:#667085;--line:#e4e9f1;--white:#fff;--red:#dc2626;--amber:#d97706}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:10px 13px;background:var(--indigo);color:white;font-weight:650}button.secondary{background:#eef2ff;color:#3730a3;border:1px solid #dbe2ff}button.light{background:#f3f4f6;color:#344054;border:1px solid #e5e7eb}button.danger{background:#fee2e2;color:#991b1b}button:disabled{opacity:.5;cursor:not-allowed}
+header{background:var(--navy);color:white;padding:15px 22px;display:flex;align-items:center;justify-content:space-between;gap:15px;position:sticky;top:0;z-index:5;box-shadow:0 4px 16px #13233a22}
+.brand{display:flex;align-items:center;gap:12px}.logo{height:42px;width:42px;border-radius:12px;background:#315078;display:grid;place-items:center;font-size:23px}.brand h1{font-size:18px;margin:0}.brand small{display:block;color:#c9d7e8;margin-top:2px}.pill{border-radius:999px;background:#e0f2fe;color:#075985;padding:4px 9px;font-size:11px;font-weight:800;display:inline-block}.header-actions{display:flex;gap:8px;align-items:center}
+.app{max-width:1400px;margin:auto;padding:20px 20px 100px}.hero{background:linear-gradient(120deg,#fff,#f3f6ff);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:18px;display:flex;justify-content:space-between;gap:20px;align-items:center}.hero h2{margin:0 0 6px;font-size:24px}.muted{color:var(--muted)}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.nav button{background:white;color:#475467;border:1px solid var(--line)}.nav button.active{background:var(--indigo);color:white;border-color:var(--indigo)}
+.grid{display:grid;gap:14px}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:white;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 3px 12px #17203306;min-width:0}.card h3{margin:0 0 14px;font-size:16px}.stat{display:flex;gap:13px;align-items:center}.stat-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;background:#eef2ff;font-size:21px}.stat label{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;font-weight:750}.stat strong{font-size:25px;display:block;margin-top:2px}
+.formgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field label{font-size:12px;color:#475467;font-weight:750}.field input,.field select,.field textarea,input,select,textarea{min-width:0;border:1px solid #d0d5dd;border-radius:9px;padding:9px 10px;background:white;color:var(--ink)}.field textarea{min-height:80px;resize:vertical}.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.table-wrap{overflow:auto;max-height:560px;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;background:white;min-width:760px}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #edf0f5;vertical-align:middle}th{background:#f8fafc;color:#667085;font-size:11px;text-transform:uppercase;position:sticky;top:0;z-index:1}td input,td select{width:100%;min-width:72px;padding:7px}td .short{width:78px}.status{font-size:11px;border-radius:999px;padding:5px 9px;font-weight:750}.active-status{background:#d1fae5;color:#065f46}.void-status{background:#e5e7eb;color:#4b5563}.bar{height:8px;background:#e9edf5;border-radius:99px;overflow:hidden}.bar span{display:block;height:100%;background:var(--teal);border-radius:99px}.hidden{display:none!important}.question-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.bubble-row{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eef0f4;padding:8px 0;gap:8px}.choices{display:flex;gap:8px}.choices label{display:flex;align-items:center;gap:3px;font-weight:600}.choices input{accent-color:var(--indigo)}.toast{padding:10px 13px;background:#ecfdf3;border:1px solid #a7f3d0;color:#065f46;border-radius:10px;margin-bottom:14px}.empty{padding:30px;text-align:center;color:var(--muted)}.subnav{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.subnav select{max-width:240px}.small{font-size:12px}.footer-nav{display:none}.print-sheet{background:white;padding:18px;border:1px solid var(--line);max-width:850px;margin:0 auto 18px}.print-page{display:block;width:100%;height:auto;background:#fff}.omr-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 22px}.omr-q{display:flex;justify-content:space-between;align-items:center;padding:5px;border-bottom:1px solid #ddd;font-size:12px}.omr-bubbles{display:flex;gap:8px}.bubble{width:23px;height:23px;border:1px solid #333;border-radius:50%;display:grid;place-items:center;font-size:10px}
+@media(max-width:850px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.formgrid,.four{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{align-items:flex-start;flex-direction:column}.app{padding:14px 12px 95px}.header-actions .location{display:none}}
+/* Interfaz móvil tipo iOS */
+@media(max-width:540px){
+ body{font-size:15px;padding-bottom:76px;-webkit-text-size-adjust:100%}
+ header{position:sticky;padding:10px 12px;min-height:62px}
+ .brand{gap:8px}.brand h1{font-size:14px}.brand small{font-size:10px}.logo{height:34px;width:34px}
+ .header-actions{gap:4px}.header-actions button{padding:8px;font-size:11px}
+ .app{padding:10px 10px 100px}
+ .hero{border-radius:18px;padding:16px;gap:12px}
+ .hero h2{font-size:20px}.card{border-radius:16px;padding:14px}
+ button{min-height:44px;border-radius:13px;padding:11px 13px;touch-action:manipulation}
+ input,select,textarea{min-height:44px;font-size:16px!important}
+ .actions{display:grid;grid-template-columns:1fr;width:100%}.actions button{width:100%}
+ .nav{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 0 8px;margin:0 -2px 12px}
+ .nav button{flex:0 0 auto;scroll-snap-align:start;border-radius:999px;padding:10px 14px;font-size:13px;white-space:nowrap}
+ .nav button.active{box-shadow:0 3px 10px #4338ca30}
+ .footer-nav{display:flex;position:fixed;z-index:20;bottom:0;left:0;right:0;background:#ffffffed;backdrop-filter:blur(18px);border-top:1px solid #e5e7eb;padding:7px max(8px,env(safe-area-inset-left)) calc(7px + env(safe-area-inset-bottom));gap:4px;justify-content:space-around}
+ .footer-nav button{background:transparent;color:#667085;border:0;min-height:48px;padding:5px 7px;font-size:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+ .footer-nav button.active{color:#4338ca;background:#eef2ff}
+ .table-wrap{max-height:none}table{min-width:680px}
+ .print-sheet{padding:6px;overflow:hidden}.print-page{width:100%;height:auto}
+ .subnav{align-items:stretch}.subnav select{max-width:none;width:100%}
+}
+@media(max-width:540px){header{padding:12px}.brand h1{font-size:15px}.brand small{font-size:11px}.logo{height:36px;width:36px}.stats,.two,.three,.formgrid{grid-template-columns:1fr}.question-grid{grid-template-columns:1fr}.hero h2{font-size:20px}.card{padding:14px}.nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.nav button{padding:9px 5px;font-size:12px}}
+.report-page{margin-bottom:16px}@media print{.report-page{break-after:page;page-break-after:always;border:0!important;box-shadow:none!important;padding:0!important}@page{size:letter portrait;margin:0.25in}body{background:white}.no-print,header,.nav,.hero,.footer-nav,button{display:none!important}.app{padding:0;max-width:none}.print-sheet{border:0;padding:0;width:100%;max-width:none;margin:0;break-after:page;page-break-after:always}.print-sheet:last-child{break-after:auto;page-break-after:auto}.print-sheet canvas{display:block;width:100%!important;height:auto!important;max-height:10.25in;object-fit:contain}.omr-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bubble{width:22px;height:22px}.print-title{display:block!important}}
+.lay-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.lay-card{border:1px solid var(--line);border-top:5px solid var(--c);border-radius:14px;padding:12px;background:#fff;display:flex;flex-direction:column;gap:8px}.lay-card h4{margin:0;font-size:13px;line-height:1.25;min-height:34px}.lay-card .rng{font-size:12px;color:var(--muted)}.chips{display:flex;gap:4px;flex-wrap:wrap}.chip{width:24px;height:24px;border-radius:50%;border:2px solid #111;display:grid;place-items:center;font-size:11px;font-weight:800}.lay-sum{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px;padding:10px 12px;border-radius:12px;background:#f8fafc;border:1px solid var(--line)}.lay-sum.bad{background:#fef2f2;border-color:#fecaca;color:#991b1b}.fchip{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:750;color:#fff;background:var(--c)}.fsc{display:flex;gap:6px;flex-wrap:wrap}.fsc span{font-size:11px;background:#f1f5f9;border-radius:8px;padding:3px 7px;white-space:nowrap}
+@media(max-width:850px){.lay-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:540px){.lay-grid{grid-template-columns:1fr}}
+@media print{body.pg #scanner>.grid,body.pg #scanner>.toast{display:none!important}body.pg #gradedWrap{display:block!important;margin:0!important}}
+html{-webkit-tap-highlight-color:transparent}
+header{padding-top:calc(15px + env(safe-area-inset-top));padding-left:max(22px,env(safe-area-inset-left));padding-right:max(22px,env(safe-area-inset-right))}
+.app{padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+@media(max-width:540px){header{padding-top:calc(12px + env(safe-area-inset-top));padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}.app{padding-left:max(10px,env(safe-area-inset-left));padding-right:max(10px,env(safe-area-inset-right))}}
+.install-tip{display:flex;gap:12px;align-items:flex-start;background:#eef2ff;border:1px solid #c7d2fe;border-radius:16px;padding:14px 16px;margin-bottom:16px;color:#312e81}.install-tip .ic{font-size:26px;line-height:1}.install-tip b{display:block;margin-bottom:2px}.install-tip button{margin-left:auto;flex:0 0 auto;background:#fff;color:#3730a3;border:1px solid #c7d2fe;min-height:36px;padding:6px 12px}
+@media print{.install-tip{display:none!important}}
+</style>
+<script>(function(){const __m={},__c={};function __r(n){n=n.split("/").pop().replace(/\.js$/,"");if(__c[n])return __c[n].exports;const m={exports:{}};__c[n]=m;__m[n](m,m.exports,__r);return m.exports}
+__m['QRErrorCorrectLevel']=function(module,exports,require){module.exports = {
+	L : 1,
+	M : 0,
+	Q : 3,
+	H : 2
+};
+
+
+};
+__m['QRPolynomial']=function(module,exports,require){var QRMath = require('./QRMath');
+
+function QRPolynomial(num, shift) {
+	if (num.length === undefined) {
+		throw new Error(num.length + "/" + shift);
+	}
+
+	var offset = 0;
+
+	while (offset < num.length && num[offset] === 0) {
+		offset++;
+	}
+
+	this.num = new Array(num.length - offset + shift);
+	for (var i = 0; i < num.length - offset; i++) {
+		this.num[i] = num[i + offset];
+	}
+}
+
+QRPolynomial.prototype = {
+
+	get : function(index) {
+		return this.num[index];
+	},
+	
+	getLength : function() {
+		return this.num.length;
+	},
+	
+	multiply : function(e) {
+	
+		var num = new Array(this.getLength() + e.getLength() - 1);
+	
+		for (var i = 0; i < this.getLength(); i++) {
+			for (var j = 0; j < e.getLength(); j++) {
+				num[i + j] ^= QRMath.gexp(QRMath.glog(this.get(i) ) + QRMath.glog(e.get(j) ) );
+			}
+		}
+	
+		return new QRPolynomial(num, 0);
+	},
+	
+	mod : function(e) {
+	
+		if (this.getLength() - e.getLength() < 0) {
+			return this;
+		}
+	
+		var ratio = QRMath.glog(this.get(0) ) - QRMath.glog(e.get(0) );
+	
+		var num = new Array(this.getLength() );
+		
+		for (var i = 0; i < this.getLength(); i++) {
+			num[i] = this.get(i);
+		}
+		
+		for (var x = 0; x < e.getLength(); x++) {
+			num[x] ^= QRMath.gexp(QRMath.glog(e.get(x) ) + ratio);
+		}
+	
+		// recursive call
+		return new QRPolynomial(num, 0).mod(e);
+	}
+};
+
+module.exports = QRPolynomial;
+
+};
+__m['QRMaskPattern']=function(module,exports,require){module.exports = {
+	PATTERN000 : 0,
+	PATTERN001 : 1,
+	PATTERN010 : 2,
+	PATTERN011 : 3,
+	PATTERN100 : 4,
+	PATTERN101 : 5,
+	PATTERN110 : 6,
+	PATTERN111 : 7
+};
+
+};
+__m['QRMode']=function(module,exports,require){module.exports = {
+    MODE_NUMBER :       1 << 0,
+    MODE_ALPHA_NUM :    1 << 1,
+    MODE_8BIT_BYTE :    1 << 2,
+    MODE_KANJI :        1 << 3
+};
+
+};
+__m['QRUtil']=function(module,exports,require){var QRMode = require('./QRMode');
+var QRPolynomial = require('./QRPolynomial');
+var QRMath = require('./QRMath');
+var QRMaskPattern = require('./QRMaskPattern');
+
+var QRUtil = {
+
+    PATTERN_POSITION_TABLE : [
+        [],
+        [6, 18],
+        [6, 22],
+        [6, 26],
+        [6, 30],
+        [6, 34],
+        [6, 22, 38],
+        [6, 24, 42],
+        [6, 26, 46],
+        [6, 28, 50],
+        [6, 30, 54],        
+        [6, 32, 58],
+        [6, 34, 62],
+        [6, 26, 46, 66],
+        [6, 26, 48, 70],
+        [6, 26, 50, 74],
+        [6, 30, 54, 78],
+        [6, 30, 56, 82],
+        [6, 30, 58, 86],
+        [6, 34, 62, 90],
+        [6, 28, 50, 72, 94],
+        [6, 26, 50, 74, 98],
+        [6, 30, 54, 78, 102],
+        [6, 28, 54, 80, 106],
+        [6, 32, 58, 84, 110],
+        [6, 30, 58, 86, 114],
+        [6, 34, 62, 90, 118],
+        [6, 26, 50, 74, 98, 122],
+        [6, 30, 54, 78, 102, 126],
+        [6, 26, 52, 78, 104, 130],
+        [6, 30, 56, 82, 108, 134],
+        [6, 34, 60, 86, 112, 138],
+        [6, 30, 58, 86, 114, 142],
+        [6, 34, 62, 90, 118, 146],
+        [6, 30, 54, 78, 102, 126, 150],
+        [6, 24, 50, 76, 102, 128, 154],
+        [6, 28, 54, 80, 106, 132, 158],
+        [6, 32, 58, 84, 110, 136, 162],
+        [6, 26, 54, 82, 110, 138, 166],
+        [6, 30, 58, 86, 114, 142, 170]
+    ],
+
+    G15 : (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0),
+    G18 : (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0),
+    G15_MASK : (1 << 14) | (1 << 12) | (1 << 10)    | (1 << 4) | (1 << 1),
+
+    getBCHTypeInfo : function(data) {
+        var d = data << 10;
+        while (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G15) >= 0) {
+            d ^= (QRUtil.G15 << (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G15) ) );    
+        }
+        return ( (data << 10) | d) ^ QRUtil.G15_MASK;
+    },
+
+    getBCHTypeNumber : function(data) {
+        var d = data << 12;
+        while (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G18) >= 0) {
+            d ^= (QRUtil.G18 << (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G18) ) );    
+        }
+        return (data << 12) | d;
+    },
+
+    getBCHDigit : function(data) {
+
+        var digit = 0;
+
+        while (data !== 0) {
+            digit++;
+            data >>>= 1;
+        }
+
+        return digit;
+    },
+
+    getPatternPosition : function(typeNumber) {
+        return QRUtil.PATTERN_POSITION_TABLE[typeNumber - 1];
+    },
+
+    getMask : function(maskPattern, i, j) {
+        
+        switch (maskPattern) {
+            
+        case QRMaskPattern.PATTERN000 : return (i + j) % 2 === 0;
+        case QRMaskPattern.PATTERN001 : return i % 2 === 0;
+        case QRMaskPattern.PATTERN010 : return j % 3 === 0;
+        case QRMaskPattern.PATTERN011 : return (i + j) % 3 === 0;
+        case QRMaskPattern.PATTERN100 : return (Math.floor(i / 2) + Math.floor(j / 3) ) % 2 === 0;
+        case QRMaskPattern.PATTERN101 : return (i * j) % 2 + (i * j) % 3 === 0;
+        case QRMaskPattern.PATTERN110 : return ( (i * j) % 2 + (i * j) % 3) % 2 === 0;
+        case QRMaskPattern.PATTERN111 : return ( (i * j) % 3 + (i + j) % 2) % 2 === 0;
+
+        default :
+            throw new Error("bad maskPattern:" + maskPattern);
+        }
+    },
+
+    getErrorCorrectPolynomial : function(errorCorrectLength) {
+
+        var a = new QRPolynomial([1], 0);
+
+        for (var i = 0; i < errorCorrectLength; i++) {
+            a = a.multiply(new QRPolynomial([1, QRMath.gexp(i)], 0) );
+        }
+
+        return a;
+    },
+
+    getLengthInBits : function(mode, type) {
+
+        if (1 <= type && type < 10) {
+
+            // 1 - 9
+
+            switch(mode) {
+            case QRMode.MODE_NUMBER     : return 10;
+            case QRMode.MODE_ALPHA_NUM  : return 9;
+            case QRMode.MODE_8BIT_BYTE  : return 8;
+            case QRMode.MODE_KANJI      : return 8;
+            default :
+                throw new Error("mode:" + mode);
+            }
+
+        } else if (type < 27) {
+
+            // 10 - 26
+
+            switch(mode) {
+            case QRMode.MODE_NUMBER     : return 12;
+            case QRMode.MODE_ALPHA_NUM  : return 11;
+            case QRMode.MODE_8BIT_BYTE  : return 16;
+            case QRMode.MODE_KANJI      : return 10;
+            default :
+                throw new Error("mode:" + mode);
+            }
+
+        } else if (type < 41) {
+
+            // 27 - 40
+
+            switch(mode) {
+            case QRMode.MODE_NUMBER     : return 14;
+            case QRMode.MODE_ALPHA_NUM  : return 13;
+            case QRMode.MODE_8BIT_BYTE  : return 16;
+            case QRMode.MODE_KANJI      : return 12;
+            default :
+                throw new Error("mode:" + mode);
+            }
+
+        } else {
+            throw new Error("type:" + type);
+        }
+    },
+
+    getLostPoint : function(qrCode) {
+        
+        var moduleCount = qrCode.getModuleCount();
+        var lostPoint = 0;
+        var row = 0; 
+        var col = 0;
+
+        
+        // LEVEL1
+        
+        for (row = 0; row < moduleCount; row++) {
+
+            for (col = 0; col < moduleCount; col++) {
+
+                var sameCount = 0;
+                var dark = qrCode.isDark(row, col);
+
+                for (var r = -1; r <= 1; r++) {
+
+                    if (row + r < 0 || moduleCount <= row + r) {
+                        continue;
+                    }
+
+                    for (var c = -1; c <= 1; c++) {
+
+                        if (col + c < 0 || moduleCount <= col + c) {
+                            continue;
+                        }
+
+                        if (r === 0 && c === 0) {
+                            continue;
+                        }
+
+                        if (dark === qrCode.isDark(row + r, col + c) ) {
+                            sameCount++;
+                        }
+                    }
+                }
+
+                if (sameCount > 5) {
+                    lostPoint += (3 + sameCount - 5);
+                }
+            }
+        }
+
+        // LEVEL2
+
+        for (row = 0; row < moduleCount - 1; row++) {
+            for (col = 0; col < moduleCount - 1; col++) {
+                var count = 0;
+                if (qrCode.isDark(row,     col    ) ) count++;
+                if (qrCode.isDark(row + 1, col    ) ) count++;
+                if (qrCode.isDark(row,     col + 1) ) count++;
+                if (qrCode.isDark(row + 1, col + 1) ) count++;
+                if (count === 0 || count === 4) {
+                    lostPoint += 3;
+                }
+            }
+        }
+
+        // LEVEL3
+
+        for (row = 0; row < moduleCount; row++) {
+            for (col = 0; col < moduleCount - 6; col++) {
+                if (qrCode.isDark(row, col) && 
+                        !qrCode.isDark(row, col + 1) && 
+                         qrCode.isDark(row, col + 2) && 
+                         qrCode.isDark(row, col + 3) && 
+                         qrCode.isDark(row, col + 4) && 
+                        !qrCode.isDark(row, col + 5) && 
+                         qrCode.isDark(row, col + 6) ) {
+                    lostPoint += 40;
+                }
+            }
+        }
+
+        for (col = 0; col < moduleCount; col++) {
+            for (row = 0; row < moduleCount - 6; row++) {
+                if (qrCode.isDark(row, col) &&
+                        !qrCode.isDark(row + 1, col) &&
+                         qrCode.isDark(row + 2, col) &&
+                         qrCode.isDark(row + 3, col) &&
+                         qrCode.isDark(row + 4, col) &&
+                        !qrCode.isDark(row + 5, col) &&
+                         qrCode.isDark(row + 6, col) ) {
+                    lostPoint += 40;
+                }
+            }
+        }
+
+        // LEVEL4
+        
+        var darkCount = 0;
+
+        for (col = 0; col < moduleCount; col++) {
+            for (row = 0; row < moduleCount; row++) {
+                if (qrCode.isDark(row, col) ) {
+                    darkCount++;
+                }
+            }
+        }
+        
+        var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+        lostPoint += ratio * 10;
+
+        return lostPoint;       
+    }
+
+};
+
+module.exports = QRUtil;
+
+};
+__m['QRMath']=function(module,exports,require){var QRMath = {
+
+	glog : function(n) {
+	
+		if (n < 1) {
+			throw new Error("glog(" + n + ")");
+		}
+		
+		return QRMath.LOG_TABLE[n];
+	},
+	
+	gexp : function(n) {
+	
+		while (n < 0) {
+			n += 255;
+		}
+	
+		while (n >= 256) {
+			n -= 255;
+		}
+	
+		return QRMath.EXP_TABLE[n];
+	},
+	
+	EXP_TABLE : new Array(256),
+	
+	LOG_TABLE : new Array(256)
+
+};
+	
+for (var i = 0; i < 8; i++) {
+	QRMath.EXP_TABLE[i] = 1 << i;
+}
+for (var i = 8; i < 256; i++) {
+	QRMath.EXP_TABLE[i] = QRMath.EXP_TABLE[i - 4]
+		^ QRMath.EXP_TABLE[i - 5]
+		^ QRMath.EXP_TABLE[i - 6]
+		^ QRMath.EXP_TABLE[i - 8];
+}
+for (var i = 0; i < 255; i++) {
+	QRMath.LOG_TABLE[QRMath.EXP_TABLE[i] ] = i;
+}
+
+module.exports = QRMath;
+
+};
+__m['QR8bitByte']=function(module,exports,require){var QRMode = require('./QRMode');
+
+function QR8bitByte(data) {
+	this.mode = QRMode.MODE_8BIT_BYTE;
+	this.data = data;
+}
+
+QR8bitByte.prototype = {
+
+	getLength : function() {
+		return this.data.length;
+	},
+	
+	write : function(buffer) {
+		for (var i = 0; i < this.data.length; i++) {
+			// not JIS ...
+			buffer.put(this.data.charCodeAt(i), 8);
+		}
+	}
+};
+
+module.exports = QR8bitByte;
+
+};
+__m['index']=function(module,exports,require){//---------------------------------------------------------------------
+// QRCode for JavaScript
+//
+// Copyright (c) 2009 Kazuhiko Arase
+//
+// URL: http://www.d-project.com/
+//
+// Licensed under the MIT license:
+//   http://www.opensource.org/licenses/mit-license.php
+//
+// The word "QR Code" is registered trademark of 
+// DENSO WAVE INCORPORATED
+//   http://www.denso-wave.com/qrcode/faqpatent-e.html
+//
+//---------------------------------------------------------------------
+// Modified to work in node for this project (and some refactoring)
+//---------------------------------------------------------------------
+
+var QR8bitByte = require('./QR8bitByte');
+var QRUtil = require('./QRUtil');
+var QRPolynomial = require('./QRPolynomial');
+var QRRSBlock = require('./QRRSBlock');
+var QRBitBuffer = require('./QRBitBuffer');
+
+function QRCode(typeNumber, errorCorrectLevel) {
+	this.typeNumber = typeNumber;
+	this.errorCorrectLevel = errorCorrectLevel;
+	this.modules = null;
+	this.moduleCount = 0;
+	this.dataCache = null;
+	this.dataList = [];
+}
+
+QRCode.prototype = {
+	
+	addData : function(data) {
+		var newData = new QR8bitByte(data);
+		this.dataList.push(newData);
+		this.dataCache = null;
+	},
+	
+	isDark : function(row, col) {
+		if (row < 0 || this.moduleCount <= row || col < 0 || this.moduleCount <= col) {
+			throw new Error(row + "," + col);
+		}
+		return this.modules[row][col];
+	},
+
+	getModuleCount : function() {
+		return this.moduleCount;
+	},
+	
+	make : function() {
+		// Calculate automatically typeNumber if provided is < 1
+		if (this.typeNumber < 1 ){
+			var typeNumber = 1;
+			for (typeNumber = 1; typeNumber < 40; typeNumber++) {
+				var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, this.errorCorrectLevel);
+
+				var buffer = new QRBitBuffer();
+				var totalDataCount = 0;
+				for (var i = 0; i < rsBlocks.length; i++) {
+					totalDataCount += rsBlocks[i].dataCount;
+				}
+
+				for (var x = 0; x < this.dataList.length; x++) {
+					var data = this.dataList[x];
+					buffer.put(data.mode, 4);
+					buffer.put(data.getLength(), QRUtil.getLengthInBits(data.mode, typeNumber) );
+					data.write(buffer);
+				}
+				if (buffer.getLengthInBits() <= totalDataCount * 8)
+					break;
+			}
+			this.typeNumber = typeNumber;
+		}
+		this.makeImpl(false, this.getBestMaskPattern() );
+	},
+	
+	makeImpl : function(test, maskPattern) {
+		
+		this.moduleCount = this.typeNumber * 4 + 17;
+		this.modules = new Array(this.moduleCount);
+		
+		for (var row = 0; row < this.moduleCount; row++) {
+			
+			this.modules[row] = new Array(this.moduleCount);
+			
+			for (var col = 0; col < this.moduleCount; col++) {
+				this.modules[row][col] = null;//(col + row) % 3;
+			}
+		}
+	
+		this.setupPositionProbePattern(0, 0);
+		this.setupPositionProbePattern(this.moduleCount - 7, 0);
+		this.setupPositionProbePattern(0, this.moduleCount - 7);
+		this.setupPositionAdjustPattern();
+		this.setupTimingPattern();
+		this.setupTypeInfo(test, maskPattern);
+		
+		if (this.typeNumber >= 7) {
+			this.setupTypeNumber(test);
+		}
+	
+		if (this.dataCache === null) {
+			this.dataCache = QRCode.createData(this.typeNumber, this.errorCorrectLevel, this.dataList);
+		}
+	
+		this.mapData(this.dataCache, maskPattern);
+	},
+
+	setupPositionProbePattern : function(row, col)  {
+		
+		for (var r = -1; r <= 7; r++) {
+			
+			if (row + r <= -1 || this.moduleCount <= row + r) continue;
+			
+			for (var c = -1; c <= 7; c++) {
+				
+				if (col + c <= -1 || this.moduleCount <= col + c) continue;
+				
+				if ( (0 <= r && r <= 6 && (c === 0 || c === 6) ) || 
+                     (0 <= c && c <= 6 && (r === 0 || r === 6) ) || 
+                     (2 <= r && r <= 4 && 2 <= c && c <= 4) ) {
+					this.modules[row + r][col + c] = true;
+				} else {
+					this.modules[row + r][col + c] = false;
+				}
+			}		
+		}		
+	},
+	
+	getBestMaskPattern : function() {
+	
+		var minLostPoint = 0;
+		var pattern = 0;
+	
+		for (var i = 0; i < 8; i++) {
+			
+			this.makeImpl(true, i);
+	
+			var lostPoint = QRUtil.getLostPoint(this);
+	
+			if (i === 0 || minLostPoint >  lostPoint) {
+				minLostPoint = lostPoint;
+				pattern = i;
+			}
+		}
+	
+		return pattern;
+	},
+	
+	createMovieClip : function(target_mc, instance_name, depth) {
+	
+		var qr_mc = target_mc.createEmptyMovieClip(instance_name, depth);
+		var cs = 1;
+	
+		this.make();
+
+		for (var row = 0; row < this.modules.length; row++) {
+			
+			var y = row * cs;
+			
+			for (var col = 0; col < this.modules[row].length; col++) {
+	
+				var x = col * cs;
+				var dark = this.modules[row][col];
+			
+				if (dark) {
+					qr_mc.beginFill(0, 100);
+					qr_mc.moveTo(x, y);
+					qr_mc.lineTo(x + cs, y);
+					qr_mc.lineTo(x + cs, y + cs);
+					qr_mc.lineTo(x, y + cs);
+					qr_mc.endFill();
+				}
+			}
+		}
+		
+		return qr_mc;
+	},
+
+	setupTimingPattern : function() {
+		
+		for (var r = 8; r < this.moduleCount - 8; r++) {
+			if (this.modules[r][6] !== null) {
+				continue;
+			}
+			this.modules[r][6] = (r % 2 === 0);
+		}
+	
+		for (var c = 8; c < this.moduleCount - 8; c++) {
+			if (this.modules[6][c] !== null) {
+				continue;
+			}
+			this.modules[6][c] = (c % 2 === 0);
+		}
+	},
+	
+	setupPositionAdjustPattern : function() {
+	
+		var pos = QRUtil.getPatternPosition(this.typeNumber);
+		
+		for (var i = 0; i < pos.length; i++) {
+		
+			for (var j = 0; j < pos.length; j++) {
+			
+				var row = pos[i];
+				var col = pos[j];
+				
+				if (this.modules[row][col] !== null) {
+					continue;
+				}
+				
+				for (var r = -2; r <= 2; r++) {
+				
+					for (var c = -2; c <= 2; c++) {
+					
+						if (Math.abs(r) === 2 || 
+                            Math.abs(c) === 2 ||
+                            (r === 0 && c === 0) ) {
+							this.modules[row + r][col + c] = true;
+						} else {
+							this.modules[row + r][col + c] = false;
+						}
+					}
+				}
+			}
+		}
+	},
+	
+	setupTypeNumber : function(test) {
+	
+		var bits = QRUtil.getBCHTypeNumber(this.typeNumber);
+        var mod;
+	
+		for (var i = 0; i < 18; i++) {
+			mod = (!test && ( (bits >> i) & 1) === 1);
+			this.modules[Math.floor(i / 3)][i % 3 + this.moduleCount - 8 - 3] = mod;
+		}
+	
+		for (var x = 0; x < 18; x++) {
+			mod = (!test && ( (bits >> x) & 1) === 1);
+			this.modules[x % 3 + this.moduleCount - 8 - 3][Math.floor(x / 3)] = mod;
+		}
+	},
+	
+	setupTypeInfo : function(test, maskPattern) {
+	
+		var data = (this.errorCorrectLevel << 3) | maskPattern;
+		var bits = QRUtil.getBCHTypeInfo(data);
+        var mod;
+	
+		// vertical		
+		for (var v = 0; v < 15; v++) {
+	
+			mod = (!test && ( (bits >> v) & 1) === 1);
+	
+			if (v < 6) {
+				this.modules[v][8] = mod;
+			} else if (v < 8) {
+				this.modules[v + 1][8] = mod;
+			} else {
+				this.modules[this.moduleCount - 15 + v][8] = mod;
+			}
+		}
+	
+		// horizontal
+		for (var h = 0; h < 15; h++) {
+	
+			mod = (!test && ( (bits >> h) & 1) === 1);
+			
+			if (h < 8) {
+				this.modules[8][this.moduleCount - h - 1] = mod;
+			} else if (h < 9) {
+				this.modules[8][15 - h - 1 + 1] = mod;
+			} else {
+				this.modules[8][15 - h - 1] = mod;
+			}
+		}
+	
+		// fixed module
+		this.modules[this.moduleCount - 8][8] = (!test);
+	
+	},
+	
+	mapData : function(data, maskPattern) {
+		
+		var inc = -1;
+		var row = this.moduleCount - 1;
+		var bitIndex = 7;
+		var byteIndex = 0;
+		
+		for (var col = this.moduleCount - 1; col > 0; col -= 2) {
+	
+			if (col === 6) col--;
+	
+			while (true) {
+	
+				for (var c = 0; c < 2; c++) {
+					
+					if (this.modules[row][col - c] === null) {
+						
+						var dark = false;
+	
+						if (byteIndex < data.length) {
+							dark = ( ( (data[byteIndex] >>> bitIndex) & 1) === 1);
+						}
+	
+						var mask = QRUtil.getMask(maskPattern, row, col - c);
+	
+						if (mask) {
+							dark = !dark;
+						}
+						
+						this.modules[row][col - c] = dark;
+						bitIndex--;
+	
+						if (bitIndex === -1) {
+							byteIndex++;
+							bitIndex = 7;
+						}
+					}
+				}
+								
+				row += inc;
+	
+				if (row < 0 || this.moduleCount <= row) {
+					row -= inc;
+					inc = -inc;
+					break;
+				}
+			}
+		}
+		
+	}
+
+};
+
+QRCode.PAD0 = 0xEC;
+QRCode.PAD1 = 0x11;
+
+QRCode.createData = function(typeNumber, errorCorrectLevel, dataList) {
+	
+	var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectLevel);
+	
+	var buffer = new QRBitBuffer();
+	
+	for (var i = 0; i < dataList.length; i++) {
+		var data = dataList[i];
+		buffer.put(data.mode, 4);
+		buffer.put(data.getLength(), QRUtil.getLengthInBits(data.mode, typeNumber) );
+		data.write(buffer);
+	}
+
+	// calc num max data.
+	var totalDataCount = 0;
+	for (var x = 0; x < rsBlocks.length; x++) {
+		totalDataCount += rsBlocks[x].dataCount;
+	}
+
+	if (buffer.getLengthInBits() > totalDataCount * 8) {
+		throw new Error("code length overflow. (" + 
+            buffer.getLengthInBits() + 
+            ">" +  
+            totalDataCount * 8 + 
+            ")");
+	}
+
+	// end code
+	if (buffer.getLengthInBits() + 4 <= totalDataCount * 8) {
+		buffer.put(0, 4);
+	}
+
+	// padding
+	while (buffer.getLengthInBits() % 8 !== 0) {
+		buffer.putBit(false);
+	}
+
+	// padding
+	while (true) {
+		
+		if (buffer.getLengthInBits() >= totalDataCount * 8) {
+			break;
+		}
+		buffer.put(QRCode.PAD0, 8);
+		
+		if (buffer.getLengthInBits() >= totalDataCount * 8) {
+			break;
+		}
+		buffer.put(QRCode.PAD1, 8);
+	}
+
+	return QRCode.createBytes(buffer, rsBlocks);
+};
+
+QRCode.createBytes = function(buffer, rsBlocks) {
+
+	var offset = 0;
+	
+	var maxDcCount = 0;
+	var maxEcCount = 0;
+	
+	var dcdata = new Array(rsBlocks.length);
+	var ecdata = new Array(rsBlocks.length);
+	
+	for (var r = 0; r < rsBlocks.length; r++) {
+
+		var dcCount = rsBlocks[r].dataCount;
+		var ecCount = rsBlocks[r].totalCount - dcCount;
+
+		maxDcCount = Math.max(maxDcCount, dcCount);
+		maxEcCount = Math.max(maxEcCount, ecCount);
+		
+		dcdata[r] = new Array(dcCount);
+		
+		for (var i = 0; i < dcdata[r].length; i++) {
+			dcdata[r][i] = 0xff & buffer.buffer[i + offset];
+		}
+		offset += dcCount;
+		
+		var rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount);
+		var rawPoly = new QRPolynomial(dcdata[r], rsPoly.getLength() - 1);
+
+		var modPoly = rawPoly.mod(rsPoly);
+		ecdata[r] = new Array(rsPoly.getLength() - 1);
+		for (var x = 0; x < ecdata[r].length; x++) {
+            var modIndex = x + modPoly.getLength() - ecdata[r].length;
+			ecdata[r][x] = (modIndex >= 0)? modPoly.get(modIndex) : 0;
+		}
+
+	}
+	
+	var totalCodeCount = 0;
+	for (var y = 0; y < rsBlocks.length; y++) {
+		totalCodeCount += rsBlocks[y].totalCount;
+	}
+
+	var data = new Array(totalCodeCount);
+	var index = 0;
+
+	for (var z = 0; z < maxDcCount; z++) {
+		for (var s = 0; s < rsBlocks.length; s++) {
+			if (z < dcdata[s].length) {
+				data[index++] = dcdata[s][z];
+			}
+		}
+	}
+
+	for (var xx = 0; xx < maxEcCount; xx++) {
+		for (var t = 0; t < rsBlocks.length; t++) {
+			if (xx < ecdata[t].length) {
+				data[index++] = ecdata[t][xx];
+			}
+		}
+	}
+
+	return data;
+
+};
+
+module.exports = QRCode;
+
+};
+__m['QRBitBuffer']=function(module,exports,require){function QRBitBuffer() {
+	this.buffer = [];
+	this.length = 0;
+}
+
+QRBitBuffer.prototype = {
+
+	get : function(index) {
+		var bufIndex = Math.floor(index / 8);
+		return ( (this.buffer[bufIndex] >>> (7 - index % 8) ) & 1) == 1;
+	},
+	
+	put : function(num, length) {
+		for (var i = 0; i < length; i++) {
+			this.putBit( ( (num >>> (length - i - 1) ) & 1) == 1);
+		}
+	},
+	
+	getLengthInBits : function() {
+		return this.length;
+	},
+	
+	putBit : function(bit) {
+	
+		var bufIndex = Math.floor(this.length / 8);
+		if (this.buffer.length <= bufIndex) {
+			this.buffer.push(0);
+		}
+	
+		if (bit) {
+			this.buffer[bufIndex] |= (0x80 >>> (this.length % 8) );
+		}
+	
+		this.length++;
+	}
+};
+
+module.exports = QRBitBuffer;
+
+};
+__m['QRRSBlock']=function(module,exports,require){var QRErrorCorrectLevel = require('./QRErrorCorrectLevel');
+
+function QRRSBlock(totalCount, dataCount) {
+	this.totalCount = totalCount;
+	this.dataCount  = dataCount;
+}
+
+QRRSBlock.RS_BLOCK_TABLE = [
+
+	// L
+	// M
+	// Q
+	// H
+
+	// 1
+	[1, 26, 19],
+	[1, 26, 16],
+	[1, 26, 13],
+	[1, 26, 9],
+	
+	// 2
+	[1, 44, 34],
+	[1, 44, 28],
+	[1, 44, 22],
+	[1, 44, 16],
+
+	// 3
+	[1, 70, 55],
+	[1, 70, 44],
+	[2, 35, 17],
+	[2, 35, 13],
+
+	// 4		
+	[1, 100, 80],
+	[2, 50, 32],
+	[2, 50, 24],
+	[4, 25, 9],
+	
+	// 5
+	[1, 134, 108],
+	[2, 67, 43],
+	[2, 33, 15, 2, 34, 16],
+	[2, 33, 11, 2, 34, 12],
+	
+	// 6
+	[2, 86, 68],
+	[4, 43, 27],
+	[4, 43, 19],
+	[4, 43, 15],
+	
+	// 7		
+	[2, 98, 78],
+	[4, 49, 31],
+	[2, 32, 14, 4, 33, 15],
+	[4, 39, 13, 1, 40, 14],
+	
+	// 8
+	[2, 121, 97],
+	[2, 60, 38, 2, 61, 39],
+	[4, 40, 18, 2, 41, 19],
+	[4, 40, 14, 2, 41, 15],
+	
+	// 9
+	[2, 146, 116],
+	[3, 58, 36, 2, 59, 37],
+	[4, 36, 16, 4, 37, 17],
+	[4, 36, 12, 4, 37, 13],
+	
+	// 10		
+	[2, 86, 68, 2, 87, 69],
+	[4, 69, 43, 1, 70, 44],
+	[6, 43, 19, 2, 44, 20],
+	[6, 43, 15, 2, 44, 16],
+
+	// 11
+	[4, 101, 81],
+	[1, 80, 50, 4, 81, 51],
+	[4, 50, 22, 4, 51, 23],
+	[3, 36, 12, 8, 37, 13],
+
+	// 12
+	[2, 116, 92, 2, 117, 93],
+	[6, 58, 36, 2, 59, 37],
+	[4, 46, 20, 6, 47, 21],
+	[7, 42, 14, 4, 43, 15],
+
+	// 13
+	[4, 133, 107],
+	[8, 59, 37, 1, 60, 38],
+	[8, 44, 20, 4, 45, 21],
+	[12, 33, 11, 4, 34, 12],
+
+	// 14
+	[3, 145, 115, 1, 146, 116],
+	[4, 64, 40, 5, 65, 41],
+	[11, 36, 16, 5, 37, 17],
+	[11, 36, 12, 5, 37, 13],
+
+	// 15
+	[5, 109, 87, 1, 110, 88],
+	[5, 65, 41, 5, 66, 42],
+	[5, 54, 24, 7, 55, 25],
+	[11, 36, 12],
+
+	// 16
+	[5, 122, 98, 1, 123, 99],
+	[7, 73, 45, 3, 74, 46],
+	[15, 43, 19, 2, 44, 20],
+	[3, 45, 15, 13, 46, 16],
+
+	// 17
+	[1, 135, 107, 5, 136, 108],
+	[10, 74, 46, 1, 75, 47],
+	[1, 50, 22, 15, 51, 23],
+	[2, 42, 14, 17, 43, 15],
+
+	// 18
+	[5, 150, 120, 1, 151, 121],
+	[9, 69, 43, 4, 70, 44],
+	[17, 50, 22, 1, 51, 23],
+	[2, 42, 14, 19, 43, 15],
+
+	// 19
+	[3, 141, 113, 4, 142, 114],
+	[3, 70, 44, 11, 71, 45],
+	[17, 47, 21, 4, 48, 22],
+	[9, 39, 13, 16, 40, 14],
+
+	// 20
+	[3, 135, 107, 5, 136, 108],
+	[3, 67, 41, 13, 68, 42],
+	[15, 54, 24, 5, 55, 25],
+	[15, 43, 15, 10, 44, 16],
+
+	// 21
+	[4, 144, 116, 4, 145, 117],
+	[17, 68, 42],
+	[17, 50, 22, 6, 51, 23],
+	[19, 46, 16, 6, 47, 17],
+
+	// 22
+	[2, 139, 111, 7, 140, 112],
+	[17, 74, 46],
+	[7, 54, 24, 16, 55, 25],
+	[34, 37, 13],
+
+	// 23
+	[4, 151, 121, 5, 152, 122],
+	[4, 75, 47, 14, 76, 48],
+	[11, 54, 24, 14, 55, 25],
+	[16, 45, 15, 14, 46, 16],
+
+	// 24
+	[6, 147, 117, 4, 148, 118],
+	[6, 73, 45, 14, 74, 46],
+	[11, 54, 24, 16, 55, 25],
+	[30, 46, 16, 2, 47, 17],
+
+	// 25
+	[8, 132, 106, 4, 133, 107],
+	[8, 75, 47, 13, 76, 48],
+	[7, 54, 24, 22, 55, 25],
+	[22, 45, 15, 13, 46, 16],
+
+	// 26
+	[10, 142, 114, 2, 143, 115],
+	[19, 74, 46, 4, 75, 47],
+	[28, 50, 22, 6, 51, 23],
+	[33, 46, 16, 4, 47, 17],
+
+	// 27
+	[8, 152, 122, 4, 153, 123],
+	[22, 73, 45, 3, 74, 46],
+	[8, 53, 23, 26, 54, 24],
+	[12, 45, 15, 28, 46, 16],
+
+	// 28
+	[3, 147, 117, 10, 148, 118],
+	[3, 73, 45, 23, 74, 46],
+	[4, 54, 24, 31, 55, 25],
+	[11, 45, 15, 31, 46, 16],
+
+	// 29
+	[7, 146, 116, 7, 147, 117],
+	[21, 73, 45, 7, 74, 46],
+	[1, 53, 23, 37, 54, 24],
+	[19, 45, 15, 26, 46, 16],
+
+	// 30
+	[5, 145, 115, 10, 146, 116],
+	[19, 75, 47, 10, 76, 48],
+	[15, 54, 24, 25, 55, 25],
+	[23, 45, 15, 25, 46, 16],
+
+	// 31
+	[13, 145, 115, 3, 146, 116],
+	[2, 74, 46, 29, 75, 47],
+	[42, 54, 24, 1, 55, 25],
+	[23, 45, 15, 28, 46, 16],
+
+	// 32
+	[17, 145, 115],
+	[10, 74, 46, 23, 75, 47],
+	[10, 54, 24, 35, 55, 25],
+	[19, 45, 15, 35, 46, 16],
+
+	// 33
+	[17, 145, 115, 1, 146, 116],
+	[14, 74, 46, 21, 75, 47],
+	[29, 54, 24, 19, 55, 25],
+	[11, 45, 15, 46, 46, 16],
+
+	// 34
+	[13, 145, 115, 6, 146, 116],
+	[14, 74, 46, 23, 75, 47],
+	[44, 54, 24, 7, 55, 25],
+	[59, 46, 16, 1, 47, 17],
+
+	// 35
+	[12, 151, 121, 7, 152, 122],
+	[12, 75, 47, 26, 76, 48],
+	[39, 54, 24, 14, 55, 25],
+	[22, 45, 15, 41, 46, 16],
+
+	// 36
+	[6, 151, 121, 14, 152, 122],
+	[6, 75, 47, 34, 76, 48],
+	[46, 54, 24, 10, 55, 25],
+	[2, 45, 15, 64, 46, 16],
+
+	// 37
+	[17, 152, 122, 4, 153, 123],
+	[29, 74, 46, 14, 75, 47],
+	[49, 54, 24, 10, 55, 25],
+	[24, 45, 15, 46, 46, 16],
+
+	// 38
+	[4, 152, 122, 18, 153, 123],
+	[13, 74, 46, 32, 75, 47],
+	[48, 54, 24, 14, 55, 25],
+	[42, 45, 15, 32, 46, 16],
+
+	// 39
+	[20, 147, 117, 4, 148, 118],
+	[40, 75, 47, 7, 76, 48],
+	[43, 54, 24, 22, 55, 25],
+	[10, 45, 15, 67, 46, 16],
+
+	// 40
+	[19, 148, 118, 6, 149, 119],
+	[18, 75, 47, 31, 76, 48],
+	[34, 54, 24, 34, 55, 25],
+	[20, 45, 15, 61, 46, 16]
+];
+
+QRRSBlock.getRSBlocks = function(typeNumber, errorCorrectLevel) {
+	
+	var rsBlock = QRRSBlock.getRsBlockTable(typeNumber, errorCorrectLevel);
+	
+	if (rsBlock === undefined) {
+		throw new Error("bad rs block @ typeNumber:" + typeNumber + "/errorCorrectLevel:" + errorCorrectLevel);
+	}
+
+	var length = rsBlock.length / 3;
+	
+	var list = [];
+	
+	for (var i = 0; i < length; i++) {
+
+		var count = rsBlock[i * 3 + 0];
+		var totalCount = rsBlock[i * 3 + 1];
+		var dataCount  = rsBlock[i * 3 + 2];
+
+		for (var j = 0; j < count; j++) {
+			list.push(new QRRSBlock(totalCount, dataCount) );	
+		}
+	}
+	
+	return list;
+};
+
+QRRSBlock.getRsBlockTable = function(typeNumber, errorCorrectLevel) {
+
+	switch(errorCorrectLevel) {
+	case QRErrorCorrectLevel.L :
+		return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
+	case QRErrorCorrectLevel.M :
+		return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
+	case QRErrorCorrectLevel.Q :
+		return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
+	case QRErrorCorrectLevel.H :
+		return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
+	default :
+		return undefined;
+	}
+};
+
+module.exports = QRRSBlock;
+
+};
+const QRC=__r("index");window.qrcode=function(t,l){return new QRC(-1,3)};})();</script>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="logo">▦</div><div><h1>EduScan QR OMR <span class="pill">PRO 2026</span></h1><small>Gestión de exámenes y calificación inteligente</small></div></div>
+ <div class="header-actions"><span class="location muted" style="color:#d6e2f0">Funciona sin conexión · datos en este dispositivo</span><button id="exportAll" class="secondary">Exportar respaldo</button><button id="importBtn" class="secondary">Importar</button><input id="importFile" type="file" accept=".json" class="hidden"></div>
+</header>
+<div class="app">
+ <div id="installTip" class="install-tip no-print hidden"><div class="ic">📲</div><div><b>Instala EduScan en tu iPhone</b><span id="installMsg"></span></div><button id="installClose" type="button">Cerrar</button></div>
+ <div class="hero no-print"><div><h2 id="pageTitle">Panel de control general</h2><div class="muted" id="pageSubtitle">Resumen de exámenes, alumnos y resultados.</div></div><div class="actions"><button data-go="scanner">▣ Abrir escáner</button><button class="secondary" data-go="template">Configurar plantilla</button></div></div>
+ <nav class="nav no-print" id="nav">
+  <button class="active" data-tab="dashboard">▦ Inicio</button><button data-tab="template">☷ Plantilla y clave</button><button data-tab="students">♙ Alumnos</button><button data-tab="scanner">▣ Escáner OMR</button><button data-tab="print">▤ Hojas imprimibles</button><button data-tab="results">▥ Resultados</button><button data-tab="report">◔ Informes</button><button data-tab="history">◷ Versiones</button>
+ </nav>
+ <div id="toast" class="toast hidden"></div>
+ <section id="dashboard" class="view">
+  <div class="grid stats">
+   <div class="card stat"><div class="stat-icon">▤</div><div><label>Resultados guardados</label><strong id="statResults">0</strong></div></div>
+   <div class="card stat"><div class="stat-icon">♙</div><div><label>Alumnos registrados</label><strong id="statStudents">0</strong></div></div>
+   <div class="card stat"><div class="stat-icon">★</div><div><label>Promedio de calificación</label><strong id="statAverage">0.0</strong></div></div>
+   <div class="card stat"><div class="stat-icon">☷</div><div><label>Reactivos activos</label><strong id="statQuestions">20</strong></div></div>
+  </div>
+  <div class="grid two">
+   <div class="card"><h3>Accesos rápidos</h3><div class="grid two">
+    <button data-go="template">Editar clave de respuestas</button><button data-go="students" class="secondary">Administrar alumnos</button><button data-go="print" class="secondary">Generar hoja OMR</button><button data-go="results" class="secondary">Ver estadísticas</button>
+   </div></div>
+   <div class="card"><h3>Configuración del examen</h3><div class="field"><label>Nombre del examen</label><input id="examName" value="Evaluación diagnóstica"></div><div class="formgrid" style="margin-top:12px"><div class="field"><label>Grupo</label><input id="examGroup" value="3A"></div><div class="field"><label>Reactivos (se cambia en Plantilla)</label><input id="totalDisplay" readonly style="cursor:pointer;background:#f8fafc"></div></div><p class="muted small">De 10 a 100 reactivos (de 10 en 10), repartidos por campo formativo con 2 a 6 incisos cada uno.</p></div>
+  </div>
+ </section>
+ <section id="template" class="view hidden">
+  <div class="card no-print" style="margin-bottom:14px"><h3>Distribución de la hoja por campo formativo</h3><p class="muted small" style="margin-top:-6px">Cada campo formativo ocupa su propia columna de alvéolos. Elige cuántos reactivos y cuántos incisos (A, B, C…) tendrá cada uno, y los puntos que vale el campo completo.</p><div class="formgrid" style="grid-template-columns:minmax(0,260px) 1fr;margin-bottom:12px"><div class="field"><label>Total de reactivos (de 10 en 10)</label><select id="totalQuestions"><option value="10">10</option><option value="20">20</option><option value="30">30</option><option value="40">40</option><option value="50">50</option><option value="60">60</option><option value="70">70</option><option value="80">80</option><option value="90">90</option><option value="100">100</option></select></div><div class="muted small" style="align-self:end">Al cambiar el total, los reactivos se reparten en partes iguales; luego puedes ajustar cada campo.</div></div><div class="lay-grid" id="layoutHost"></div><div id="laySum" class="lay-sum"></div></div>
+  <div class="card no-print" style="margin-bottom:14px"><h3>Plantilla de respuestas y ponderación avanzada</h3><div class="formgrid">
+   <div class="field"><label>Modo de ponderación</label><select id="weightMode"><option value="campos">Por campo formativo (puntaje por campo)</option><option value="uniforme">Uniforme</option><option value="personalizado">Personalizado por reactivo</option><option value="bloques">Por bloques</option><option value="competencias">Por competencias</option></select></div>
+   <div class="field"><label>Valor uniforme</label><input id="uniformValue" type="number" min="0" step=".5" value="1"></div>
+   <div class="field"><label>Escala de calificación</label><select id="gradeScale"><option value="10">0–10</option><option value="100">0–100</option><option value="porcentaje">Porcentaje</option><option value="personalizada">Personalizada</option></select></div>
+   <div class="field"><label>Máximo escala personalizada</label><input id="customScale" type="number" min=".1" value="10"></div>
+   <div class="field"><label>Penalización</label><select id="penaltyMode"><option value="ninguna">Sin penalización</option><option value="fija">Puntos fijos</option><option value="porcentual">Porcentaje del valor</option></select></div>
+   <div class="field"><label>Valor de bloque 1 (1–25)</label><input id="block1" type="number" value="1" min="0" step=".5"></div>
+   <div class="field"><label>Valor de bloque 2 (26–50)</label><input id="block2" type="number" value="2" min="0" step=".5"></div>
+   <div class="field"><label>Valor de bloque 3 (51–75)</label><input id="block3" type="number" value="3" min="0" step=".5"></div>
+   <div class="field"><label>Valor de bloque 4 (76–100)</label><input id="block4" type="number" value="4" min="0" step=".5"></div>
+  </div><div class="actions" style="margin-top:14px"><button id="applyMode">Aplicar modo de ponderación</button><button id="regrade" class="secondary">Recalificar todos los resultados</button><button id="saveVersion" class="secondary">Guardar versión</button></div></div>
+  <div class="card"><div class="subnav"><h3 style="margin:0;flex:1">Editor visual de reactivos</h3><select id="questionFilter"><option value="all">Todos los reactivos</option><option value="active">Activos</option><option value="void">Anulados</option></select><input id="questionSearch" type="number" min="1" max="100" placeholder="Ir a pregunta…" style="width:145px"></div><div class="table-wrap"><table><thead><tr><th>#</th><th>Correcta</th><th>Valor</th><th>Penalización</th><th>Campo formativo (según la hoja)</th><th>Competencia</th><th>Dificultad</th><th>Estado</th></tr></thead><tbody id="keyRows"></tbody></table></div><p class="muted small">Los cambios de clave y ponderación actualizan los resultados usando las respuestas originales guardadas. Los reactivos anulados se excluyen del total posible.</p></div>
+ </section>
+ <section id="students" class="view hidden">
+  <div class="card"><h3>Gestión de alumnos</h3><form id="studentForm" class="formgrid"><div class="field"><label>ID</label><input id="studentId" placeholder="A004"></div><div class="field"><label>Nombre completo</label><input id="studentName" required placeholder="Nombre del alumno"></div><div class="field"><label>Grupo</label><input id="studentGroup" value="3A" required></div><div class="field"><label>Escuela</label><input id="studentSchool" value="Escuela primaria"></div><div class="actions"><button>Agregar alumno</button></div></form></div>
+  <div class="card" style="margin-top:14px"><h3>Lista de alumnos</h3><div class="table-wrap"><table style="min-width:600px"><thead><tr><th>ID</th><th>Nombre</th><th>Grupo</th><th>Escuela</th><th>Acciones</th></tr></thead><tbody id="studentRows"></tbody></table></div></div>
+ </section>
+ <section id="scanner" class="view hidden">
+  <div class="grid two"><div class="card"><h3>Escáner automático de alvéolos</h3><p class="muted">Sube una foto o usa la cámara del dispositivo. Para mejores resultados, usa la hoja OMR generada aquí, completa, plana, bien iluminada y tomada de frente.</p><div class="field"><label>Seleccionar alumno</label><select id="scanStudent"></select></div><div class="field" style="margin-top:10px"><label>Página que vas a escanear</label><select id="scanPage"></select></div><div class="field" style="margin-top:10px"><label>Sensibilidad de marca</label><select id="scanSens"><option value="alta">Alta (marcas muy tenues)</option><option value="normal" selected>Normal</option><option value="baja">Baja (evita falsos positivos)</option></select></div><div id="qrInfo" class="small muted" style="margin-top:8px"></div><div class="field" style="margin-top:10px"><label>Imagen o escaneo de la hoja</label><input id="scanImage" type="file" accept="image/*" capture="environment"><img id="scanPreview" class="hidden" style="max-width:100%;max-height:360px;margin-top:12px;border-radius:12px" alt="Vista previa de hoja"></div><div class="actions" style="margin-top:12px"><button id="detectBubbles">Detectar alvéolos automáticamente</button><button id="useCamera" class="secondary">Abrir cámara</button><button id="resetDetection" class="light">Limpiar</button></div><div id="detectStatus" class="muted small" style="margin-top:10px">Primero selecciona una imagen. Se detectan las 4 marcas de esquina, se lee el QR, se corrigen perspectiva e iluminación y se mide el relleno de cada alvéolo.</div><div class="field" style="margin-top:14px"><label>Respuestas detectadas (puedes corregirlas)</label><textarea id="scanAnswers" placeholder="Las respuestas aparecerán aquí después de analizar la hoja."></textarea></div><div class="actions" style="margin-top:12px"><button id="gradeScan">Calificar y guardar</button><button id="simulateScan" class="secondary">Llenar respuestas de prueba</button><button class="light" data-go="report">Ver informe</button></div></div>
+   <div class="card"><h3>Vista y revisión de detección</h3><div id="scanSummary" class="empty">Selecciona una imagen y pulsa “Detectar alvéolos automáticamente”.</div><div class="bar"><span id="scanBar" style="width:0%"></span></div><canvas id="scanOverlay" class="hidden" width="850" height="1100" style="width:100%;max-height:650px;object-fit:contain;border:1px solid #e5e7eb;border-radius:10px;margin-top:12px"></canvas><div id="scanReview" class="small" style="margin-top:10px"></div><p class="muted small" style="margin-top:12px">Importante: el reconocimiento está optimizado para la plantilla imprimible de esta app. Si la foto está inclinada, recortada o tiene sombras fuertes, verifica las respuestas antes de guardar.</p></div></div>
+  <div id="gradedWrap" class="hidden" style="margin-top:14px"><div class="card no-print" style="margin-bottom:14px"><div class="subnav" style="margin:0"><h3 style="margin:0;flex:1">Hoja calificada · <span id="gradedTitle"></span></h3><button id="gradedPdf" class="secondary">⬇️ Descargar PDF</button><button id="gradedPrint">🖨️ Imprimir</button></div><p class="muted small" style="margin:8px 0 0">✓ respuesta correcta · ✗ incorrecta · – sin responder. El aro verde marca la respuesta correcta cuando el alumno falló. Abajo de cada columna aparece el puntaje del campo formativo.</p></div><div id="gradedHost"></div></div>
+ </section>
+ <section id="print" class="view hidden">
+  <div class="card no-print" style="margin-bottom:14px"><h3>Generador de hoja de respuestas</h3><p class="muted">Hoja de alto contraste con una columna por campo formativo (las letras de los incisos van en el encabezado de cada columna), cuatro marcas de esquina y un código QR que identifica examen, alumno, página y tamaño de alvéolo. Si una columna no cabe en una página, se agregan páginas automáticamente. Cada columna lleva abajo un recuadro de puntaje.</p><div class="formgrid"><div class="field"><label>Tamaño de alvéolos</label><select id="bubbleSize"><option value="20">Pequeño · 20 px</option><option value="24" selected>Mediano · 24 px</option><option value="27">Grande · 27 px</option></select></div><div class="field"><label>Separación entre filas</label><select id="rowSpacing"><option value="compact">Compacta</option><option value="normal" selected>Normal</option><option value="wide">Amplia</option></select></div><div class="field"><label>Hojas a generar</label><select id="sheetMode"><option value="blank">En blanco (alumno se elige al escanear)</option><option value="group">Una por alumno del grupo (QR con ID)</option></select></div></div><p class="muted small">El QR de cada hoja guarda el tamaño y la página, así el escáner se ajusta solo. Imprime al 100 % (sin “ajustar a página”) y no cambies el tamaño de la hoja.</p><div class="actions"><button id="printSheet">🖨️ Imprimir hoja(s)</button><button id="downloadPdf" class="secondary">⬇️ Descargar hojas en PDF</button><button id="downloadCsv" class="secondary">Descargar plantilla CSV</button></div></div>
+  <div id="printPages"></div>
+ </section>
+ <section id="results" class="view hidden">
+  <div class="grid stats"><div class="card stat"><div class="stat-icon">✓</div><div><label>Exámenes</label><strong id="resultCount">0</strong></div></div><div class="card stat"><div class="stat-icon">★</div><div><label>Promedio</label><strong id="resultAverage">0.0</strong></div></div><div class="card stat"><div class="stat-icon">↑</div><div><label>Mayor calificación</label><strong id="resultMax">0</strong></div></div><div class="card stat"><div class="stat-icon">↓</div><div><label>Menor calificación</label><strong id="resultMin">0</strong></div></div></div>
+  <div class="card"><div class="subnav"><h3 style="margin:0;flex:1">Resultados académicos</h3><button id="exportCsv">Exportar CSV</button></div><div class="table-wrap"><table style="min-width:760px"><thead><tr><th>Alumno</th><th>Grupo</th><th>Aciertos</th><th>Errores</th><th>Sin responder</th><th>Puntos</th><th>Porcentaje</th><th>Nota</th><th>Puntaje por campo</th><th></th></tr></thead><tbody id="resultRows"></tbody></table></div></div>
+  <div class="card" style="margin-top:14px"><h3>Análisis por reactivo</h3><div class="table-wrap"><table style="min-width:600px"><thead><tr><th>Pregunta</th><th>Correcta</th><th>Aciertos</th><th>Errores</th><th>Sin responder</th><th>% acierto</th><th>Dificultad observada</th></tr></thead><tbody id="itemAnalysis"></tbody></table></div></div>
+ </section>
+ <section id="report" class="view hidden"><div class="card no-print" style="margin-bottom:14px"><div class="subnav" style="margin:0"><h3 style="margin:0;flex:1">Informe de resultados con gráficas</h3><select id="reportSel"></select><button id="printReport">🖨️ Imprimir / guardar PDF</button></div></div><div id="reportHost"></div></section>
+ <section id="history" class="view hidden"><div class="card"><h3>Historial de versiones</h3><p class="muted">Guarda una instantánea de la plantilla para poder restaurarla posteriormente.</p><div id="versionRows"></div></div></section>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const fields=['Lenguajes','Saberes y Pensamiento Científico','Ética, Naturaleza y Sociedades','De lo Humano y lo Comunitario'];
+const competencies=['Comprensión','Aplicación','Resolución de problemas','Pensamiento crítico'];
+const defaultKey=()=>Object.fromEntries(Array.from({length:100},(_,i)=>[i+1,{correct:['A','B','C','D'][i%4],value:1,penalty:0,field:fields[0],content:'',pda:'',topic:'',difficulty:'Media',competency:competencies[i%4],notes:'',status:'Activo'}]));
+const defaultState={examName:'Evaluación diagnóstica',group:'3A',school:'Escuela primaria',total:20,layout:{counts:[5,5,5,5],opts:[4,4,4,4]},fieldPoints:[25,25,25,25],weightMode:'campos',uniformValue:1,scale:'10',customScale:10,penaltyMode:'ninguna',blocks:[1,2,3,4],key:defaultKey(),students:[{id:'A001',name:'Juan Pérez',group:'3A',school:'Escuela primaria'},{id:'A002',name:'María González',group:'3A',school:'Escuela primaria'},{id:'A003',name:'Carlos López',group:'3B',school:'Escuela primaria'}],results:[],versions:[],online:true};
+let state;
+try{state=JSON.parse(localStorage.getItem('eduscan-state'))||defaultState}catch(e){state=defaultState}
+const LET='ABCDEF',FCOL=['#2563eb','#0f9f8f','#d97706','#9333ea'],ABBR=['Leng.','Saberes','Ética','Humano'];
+function evenSplit(t){const b=Math.floor(t/4),r=t-b*4;return[0,1,2,3].map(k=>b+(k<r?1:0))}
+function offsets(c){let o=0;return c.map(n=>{const r=o;o+=n;return r})}
+function fieldOf(i){const c=state.layout.counts;let o=0;for(let k=0;k<c.length;k++){o+=c[k];if(i<o)return k}return c.length-1}
+function activeInField(k){const o=offsets(state.layout.counts)[k];let n=0;for(let i=o;i<o+state.layout.counts[k];i++)if(state.key[i+1].status!=='Anulado')n++;return n}
+function fieldMax(k){const o=offsets(state.layout.counts)[k];let s=0;for(let i=o;i<o+state.layout.counts[k];i++)if(state.key[i+1].status!=='Anulado')s+=points(i);return s}
+function syncKeyFields(){for(let i=1;i<=100;i++){if(!state.key[i])state.key[i]=defaultKey()[i];const k=fieldOf(i-1),q=state.key[i];q.field=fields[k];const x=LET.indexOf(q.correct);if(x<0||x>=state.layout.opts[k])q.correct='A'}}
+function migrate(){state.total=Math.min(100,Math.max(10,Math.round((Number(state.total)||20)/10)*10));const L=state.layout=state.layout||{};if(!Array.isArray(L.counts)||L.counts.length!==4||L.counts.reduce((a,b)=>a+b,0)!==state.total)L.counts=evenSplit(state.total);if(!Array.isArray(L.opts)||L.opts.length!==4)L.opts=[4,4,4,4];L.opts=L.opts.map(n=>Math.min(6,Math.max(2,Number(n)||4)));if(!Array.isArray(state.fieldPoints)||state.fieldPoints.length!==4)state.fieldPoints=[25,25,25,25];if(!state.key)state.key=defaultKey();syncKeyFields()}
+migrate();
+function save(){localStorage.setItem('eduscan-state',JSON.stringify(state));renderStats()}
+function toast(msg){$('toast').textContent=msg;$('toast').classList.remove('hidden');setTimeout(()=>$('toast').classList.add('hidden'),3500)}
+function points(i){if(state.weightMode==='campos'){const k=fieldOf(i),n=activeInField(k);return n?(Number(state.fieldPoints[k])||0)/n:0}if(state.weightMode==='uniforme')return Number(state.uniformValue)||0;if(state.weightMode==='bloques')return Number(state.blocks[Math.min(3,Math.floor(i/25))])||0;return Number(state.key[i+1].value)||0}
+function maxPoints(){let s=0;for(let i=0;i<state.total;i++)if(state.key[i+1].status!=='Anulado')s+=points(i);return s}
+function gradeAnswers(answers){const F=state.layout.counts.map(()=>({got:0,possible:0,correct:0,wrong:0,blank:0}));let got=0,possible=0,correct=0,wrong=0,blank=0,detail={};
+for(let i=0;i<state.total;i++){const k=fieldOf(i),f=F[k],q=state.key[i+1],a=(answers[i]||'').toUpperCase(),ok=LET.slice(0,state.layout.opts[k]);if(q.status==='Anulado'){detail[i+1]={answer:a,status:'Anulado',points:0};continue}const val=points(i);possible+=val;f.possible+=val;
+if(!a||!ok.includes(a)){blank++;f.blank++;detail[i+1]={answer:'',status:'Sin responder',points:0};continue}
+if(a===q.correct){got+=val;f.got+=val;correct++;f.correct++;detail[i+1]={answer:a,status:'Correcta',points:val}}else{wrong++;f.wrong++;let p=0;if(state.penaltyMode==='fija')p=Number(q.penalty)||0;if(state.penaltyMode==='porcentual')p=val*(Number(q.penalty)||0)/100;got-=p;f.got-=p;detail[i+1]={answer:a,status:'Incorrecta',points:-p}}}
+F.forEach(f=>f.got=Math.max(0,f.got));got=Math.max(0,got);const pct=possible?got/possible*100:0;let max=state.scale==='10'?10:state.scale==='100'||state.scale==='porcentaje'?100:Number(state.customScale)||10;return {got,possible,pct,grade:pct/100*max,correct,wrong,blank,detail,fields:F}}
+function regradeAll(){state.results=state.results.map(r=>{const g=gradeAnswers(r.answers||[]);return {...r,...g,updatedAt:new Date().toISOString()}});save();renderResults();toast('Se recalcularon los resultados guardados usando las respuestas originales.')}
+function navigate(tab){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('hidden',v.id!==tab));document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));const names={dashboard:['Panel de control general','Resumen de exámenes, alumnos y resultados.'],template:['Plantilla y ponderación avanzada','Configura la clave, los puntos y las reglas de calificación.'],students:['Gestión de alumnos','Administra el padrón de estudiantes.'],scanner:['Escáner OMR automático','Detecta alvéolos desde una imagen o una foto tomada con la cámara; revisa antes de calificar.'],print:['Generador de hojas OMR','Crea una hoja imprimible de 10 a 100 reactivos por campo formativo.'],results:['Resultados y análisis académico','Consulta calificaciones y análisis por reactivo.'],report:['Informes por alumno','Gráficas de aciertos, competencias y comparación con el grupo.'],history:['Historial de versiones','Restaura una plantilla previamente guardada.']};$('pageTitle').textContent=names[tab][0];$('pageSubtitle').textContent=names[tab][1];if(tab==='template')renderKey();if(tab==='students')renderStudents();if(tab==='scanner'){renderStudentSelect();renderScanPages()}if(tab==='template')renderLayout();if(tab==='print')renderPrint();if(tab==='results')renderResults();if(tab==='report')renderReport();if(tab==='history')renderVersions()}
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.tab)));document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.go)));
+function syncSettings(){ $('examName').value=state.examName;$('examGroup').value=state.group;$('totalQuestions').value=state.total;$('weightMode').value=state.weightMode;$('uniformValue').value=state.uniformValue;$('gradeScale').value=state.scale;$('customScale').value=state.customScale;$('penaltyMode').value=state.penaltyMode;['block1','block2','block3','block4'].forEach((id,i)=>$(id).value=state.blocks[i]);renderLayout()}
+$('examName').addEventListener('change',e=>{state.examName=e.target.value;save();renderPrint()});$('examGroup').addEventListener('change',e=>{state.group=e.target.value;save()});$('totalQuestions').addEventListener('change',e=>{state.total=Number(e.target.value);state.layout.counts=evenSplit(state.total);layoutChanged()});$('totalDisplay').addEventListener('click',()=>navigate('template'));
+$('weightMode').addEventListener('change',e=>{state.weightMode=e.target.value;save();renderLayout();renderPrint();regradeAll()});$('uniformValue').addEventListener('change',e=>{state.uniformValue=Math.max(0,Number(e.target.value)||0);save();regradeAll()});$('gradeScale').addEventListener('change',e=>{state.scale=e.target.value;save();regradeAll()});$('customScale').addEventListener('change',e=>{state.customScale=Math.max(.1,Number(e.target.value)||10);save();regradeAll()});$('penaltyMode').addEventListener('change',e=>{state.penaltyMode=e.target.value;save();regradeAll()});
+['block1','block2','block3','block4'].forEach((id,i)=>$(id).addEventListener('change',e=>{state.blocks[i]=Math.max(0,Number(e.target.value)||0);save();regradeAll()}));
+$('applyMode').addEventListener('click',()=>{const m=state.weightMode;if(m==='uniforme')state.uniformValue=Math.max(0,Number($('uniformValue').value)||1);if(m==='bloques')state.blocks=['block1','block2','block3','block4'].map(id=>Math.max(0,Number($(id).value)||0));if(m==='competencias'){toast('Asigna los valores por competencia en la tabla curricular; el modo de competencias usa el valor individual como base.')}save();regradeAll();renderKey();toast('Modo de ponderación aplicado.')});
+$('regrade').addEventListener('click',regradeAll);
+function renderKey(){const filter=$('questionFilter').value,search=Number($('questionSearch').value)||0;let html='';for(let i=1;i<=state.total;i++){const q=state.key[i];if(filter==='active'&&q.status!=='Activo'||filter==='void'&&q.status!=='Anulado'||search&&search!==i)continue;html+=`<tr><td><b>${i}</b></td><td><select data-q="${i}" data-field="correct">${LET.slice(0,state.layout.opts[fieldOf(i-1)]).split('').map(a=>`<option ${q.correct===a?'selected':''}>${a}</option>`).join('')}</select></td><td><input class="short" type="number" min="0" step=".5" data-q="${i}" data-field="value" value="${q.value}"></td><td><input class="short" type="number" min="0" step=".1" data-q="${i}" data-field="penalty" value="${q.penalty}"></td><td><span class="fchip" style="--c:${FCOL[fieldOf(i-1)]}">${fields[fieldOf(i-1)]}</span></td><td><select data-q="${i}" data-field="competency">${competencies.map(c=>`<option ${q.competency===c?'selected':''}>${c}</option>`).join('')}</select></td><td><select data-q="${i}" data-field="difficulty">${['Fácil','Media','Difícil'].map(d=>`<option ${q.difficulty===d?'selected':''}>${d}</option>`).join('')}</select></td><td><button class="${q.status==='Activo'?'secondary':'light'}" data-toggle="${i}">${q.status}</button></td></tr>`} $('keyRows').innerHTML=html||'<tr><td colspan="8">No hay reactivos para mostrar.</td></tr>';document.querySelectorAll('[data-q]').forEach(el=>el.addEventListener('change',()=>{const i=Number(el.dataset.q),f=el.dataset.field;state.key[i][f]=['value','penalty'].includes(f)?Math.max(0,Number(el.value)||0):el.value;save();regradeAll()}));document.querySelectorAll('[data-toggle]').forEach(el=>el.addEventListener('click',()=>{let i=Number(el.dataset.toggle);state.key[i].status=state.key[i].status==='Activo'?'Anulado':'Activo';save();renderKey();regradeAll()}))}
+$('questionFilter').addEventListener('change',renderKey);$('questionSearch').addEventListener('input',renderKey);
+$('saveVersion').addEventListener('click',()=>{state.versions.unshift({version:(state.versions[0]?.version||0)+1,date:new Date().toLocaleString('es-MX'),description:`Respaldo de plantilla (${state.total} reactivos)`,snapshot:JSON.parse(JSON.stringify({key:state.key,total:state.total,layout:state.layout,fieldPoints:state.fieldPoints,weightMode:state.weightMode,uniformValue:state.uniformValue,blocks:state.blocks,scale:state.scale,customScale:state.customScale,penaltyMode:state.penaltyMode}))});save();renderVersions();toast('Versión de plantilla guardada.')});
+function renderStudents(){ $('studentRows').innerHTML=state.students.map(s=>`<tr><td>${s.id}</td><td>${s.name}</td><td>${s.group}</td><td>${s.school||''}</td><td><button class="danger" data-delete-student="${s.id}">Eliminar</button></td></tr>`).join('')||'<tr><td colspan="5">Sin alumnos registrados.</td></tr>';document.querySelectorAll('[data-delete-student]').forEach(b=>b.onclick=()=>{state.students=state.students.filter(s=>s.id!==b.dataset.deleteStudent);save();renderStudents();renderStudentSelect()})}
+$('studentForm').addEventListener('submit',e=>{e.preventDefault();let id=$('studentId').value.trim()||`A${String(Date.now()).slice(-4)}`;if(state.students.some(s=>s.id===id)){toast('Ese ID ya existe.');return}state.students.push({id,name:$('studentName').value.trim(),group:$('studentGroup').value.trim(),school:$('studentSchool').value.trim()});save();renderStudents();renderStudentSelect();e.target.reset();$('studentGroup').value=state.group;$('studentSchool').value=state.school;toast('Alumno agregado.')});
+function renderStudentSelect(){const sel=$('scanStudent'),cur=sel.value;sel.innerHTML='<option value="">— Selecciona al alumno de esta hoja —</option>'+state.students.map(s=>`<option value="${s.id}">${esc(s.name)} (${esc(s.group)})</option>`).join('');sel.value=state.students.some(s=>s.id===cur)?cur:''}
+function parseAnswers(s){const raw=String(s||'').toUpperCase().trim();const parts=/[,;]/.test(raw)?raw.split(/[,;]/).map(x=>x.trim()):raw.split(/\s+/).filter(Boolean);return parts.slice(0,state.total).map(x=>x.length===1&&LET.includes(x)?x:'')}
+$('gradeScan').addEventListener('click',()=>{const stu=state.students.find(s=>s.id===$('scanStudent').value);if(!stu){toast('Primero selecciona al alumno al que pertenece esta hoja.');return}const answers=parseAnswers($('scanAnswers').value);const g=gradeAnswers(answers);const res={id:'RES-'+Date.now(),studentId:stu.id,name:stu.name,group:stu.group,answers,...g,date:new Date().toISOString(),exam:state.examName};state.results.unshift(res);save();showScanResult(res);showGraded(res);reportSel=res.id;renderResults();toast('Resultado calculado y guardado.')});
+function showScanResult(r){$('scanSummary').innerHTML=`<h2 style="font-size:32px;margin:0;color:#4338ca">${r.grade.toFixed(1)}${state.scale==='10'?'/10':state.scale==='porcentaje'?'%':state.scale==='100'?'/100':'/'+state.customScale}</h2><p><b>${r.name}</b> · ${r.group}</p><p>${r.got.toFixed(2)} de ${r.possible.toFixed(2)} puntos (${r.pct.toFixed(1)}%)</p><p>${r.correct} correctas · ${r.wrong} incorrectas · ${r.blank} en blanco</p>`;$('scanBar').style.width=Math.min(100,r.pct)+'%'}
+$('simulateScan').addEventListener('click',()=>{const answers=Array.from({length:state.total},(_,i)=>{const o=LET.slice(0,state.layout.opts[fieldOf(i)]);return o[Math.floor(Math.random()*o.length)]});$('scanAnswers').value=answers.join(',');refreshGraded();toast('Se generaron respuestas aleatorias de demostración. Revisa antes de guardar.')});
+let currentScanImage=null,scanQrStudent='';
+$('scanImage').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;$('scanStudent').disabled=false;$('scanStudent').value='';scanQrStudent='';$('gradedWrap').classList.add('hidden');const url=URL.createObjectURL(f);$('scanPreview').src=url;$('scanPreview').classList.remove('hidden');currentScanImage=new Image();currentScanImage.onload=()=>{$('detectStatus').textContent=`Imagen cargada (${currentScanImage.naturalWidth} × ${currentScanImage.naturalHeight}). Pulsa detectar para analizar.`};currentScanImage.onerror=()=>{$('detectStatus').textContent='No se pudo leer la imagen.'};currentScanImage.src=url});
+$('useCamera').addEventListener('click',()=>$('scanImage').click());
+$('resetDetection').addEventListener('click',()=>{$('scanImage').value='';$('scanPreview').classList.add('hidden');$('scanOverlay').classList.add('hidden');$('scanAnswers').value='';$('scanReview').innerHTML='';$('qrInfo').innerHTML='';answersOwner=null;$('scanStudent').disabled=false;$('scanStudent').value='';scanQrStudent='';$('gradedWrap').classList.add('hidden');$('detectStatus').textContent='Selecciona una imagen para empezar.';currentScanImage=null});
+const SHEET_W=850,SHEET_H=1100,MARKERS=[[40,40],[810,40],[810,1060],[40,1060]],QR_BOX={x:628,y:44,s:156};
+let lastScan=null,answersOwner=null;
+function cleanId(s){return String(s||'').replace(/[^\w-]/g,'').slice(0,16)}
+function ensureExam(){if(!state.examId)state.examId='E'+Math.random().toString(36).slice(2,7).toUpperCase()}
+ensureExam();
+function currentRowH(d){const sp=$('rowSpacing')?.value||'normal',base=sp==='compact'?25:sp==='wide'?27.5:26.5;return Math.max(base,d+3)}
+function geom(counts,opts,dReq,rowH,withBox){const off=offsets(counts),act=counts.map((n,k)=>({k,n})).filter(x=>x.n>0),N=Math.max(1,act.length),gap=10,X0=62,XW=726,colW=(XW-gap*(N-1))/N,lw=30,box=withBox?20:0;
+const cols=act.map((a,i)=>{const n=opts[a.k],x=X0+i*(colW+gap),step=Math.min(36,(colW-lw-box-8)/n),d=Math.min(dReq,step-4);return{k:a.k,n,cnt:a.n,off:off[a.k],x,w:colW,step,d,bx:x+lw+step/2,boxX:x+lw+n*step+4}});
+const startY=320,rpp=Math.max(1,Math.floor((996-(startY-rowH/2))/rowH+1e-6)),pages=Math.max(1,...cols.map(c=>Math.ceil(c.cnt/rpp)));return{cols,startY,rowH,rpp,pages,headerY:298}}
+function drawQR(ctx,text,x,y,size){if(typeof qrcode!=='function'){ctx.strokeStyle='#111';ctx.strokeRect(x,y,size,size);ctx.fillStyle='#111';ctx.font='11px Arial';ctx.fillText('QR no disponible (sin conexión)',x+6,y+size/2);return false}const q=qrcode(0,'Q');q.addData(text);q.make();const n=q.getModuleCount(),cell=Math.max(2,Math.floor(size/(n+8))),tot=cell*(n+8);ctx.fillStyle='#fff';ctx.fillRect(x,y,tot,tot);ctx.fillStyle='#000';for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(q.isDark(r,c))ctx.fillRect(x+(c+4)*cell,y+(r+4)*cell,cell,cell);return true}
+function sheetList(pages){const mode=$('sheetMode')?.value||'blank';let studs=[null];if(mode==='group'){const g=state.students.filter(s=>s.group===state.group);if(g.length)studs=g}const out=[];studs.forEach(s=>{for(let p=1;p<=pages;p++)out.push({s,p,pages})});return out}
+const fmt=n=>Number(n).toFixed(2).replace(/\.?0+$/,'');
+function wrapText(ctx,t,w,maxL){const words=t.split(' '),lines=[];let cur='';words.forEach(wd=>{const test=cur?cur+' '+wd:wd;if(ctx.measureText(test).width>w&&cur){lines.push(cur);cur=wd}else cur=test});if(cur)lines.push(cur);return lines.slice(0,maxL)}
+function drawVerdict(ctx,x,cy,st){ctx.save();ctx.lineCap='round';ctx.lineJoin='round';const y=cy-9;ctx.lineWidth=1.2;ctx.strokeStyle='#94a3b8';ctx.fillStyle=st==='Correcta'?'#dcfce7':st==='Incorrecta'?'#fee2e2':'#f8fafc';ctx.beginPath();ctx.rect(x,y,18,18);ctx.fill();ctx.stroke();
+if(st==='Correcta'){ctx.strokeStyle='#15803d';ctx.lineWidth=2.8;ctx.beginPath();ctx.moveTo(x+3.5,y+9.5);ctx.lineTo(x+7.5,y+13.5);ctx.lineTo(x+14.5,y+4.5);ctx.stroke()}
+else if(st==='Incorrecta'){ctx.strokeStyle='#b91c1c';ctx.lineWidth=2.8;ctx.beginPath();ctx.moveTo(x+4,y+4);ctx.lineTo(x+14,y+14);ctx.moveTo(x+14,y+4);ctx.lineTo(x+4,y+14);ctx.stroke()}
+else if(st==='Sin responder'){ctx.strokeStyle='#b45309';ctx.lineWidth=2.4;ctx.beginPath();ctx.moveTo(x+4.5,y+9);ctx.lineTo(x+13.5,y+9);ctx.stroke()}
+else{ctx.fillStyle='#6b7280';ctx.font='bold 7px Arial';ctx.textAlign='center';ctx.fillText('N/A',x+9,y+11.5)}ctx.restore()}
+function drawColumns(ctx,cfg,p,r){const first=(p-1)*cfg.rpp;
+cfg.cols.forEach(c=>{const col=r?FCOL[c.k]:'#111';ctx.textBaseline='alphabetic';ctx.textAlign='left';ctx.fillStyle=col;ctx.font='bold 10.5px Arial';wrapText(ctx,fields[c.k],c.w-2,2).forEach((t,i)=>ctx.fillText(t,c.x+1,266+i*12.5));ctx.fillRect(c.x,284,c.w,1.5);
+ctx.fillStyle='#111';ctx.font='bold 14px Arial';ctx.textAlign='center';for(let j=0;j<c.n;j++)ctx.fillText(LET[j],c.bx+j*c.step,cfg.headerY);
+for(let l=0;l<cfg.rpp;l++){const idx=first+l;if(idx>=c.cnt)break;const qn=c.off+idx+1,y=cfg.startY+l*cfg.rowH;
+if(l%2===0){ctx.fillStyle='#eef1f5';ctx.fillRect(c.x-3,y-cfg.rowH/2,c.w+6,cfg.rowH)}
+ctx.fillStyle='#111';ctx.font='bold 13px Arial';ctx.textAlign='left';ctx.fillText(qn+'.',c.x+2,y+4.5);
+const dt=r&&r.detail?r.detail[qn]:null,ans=dt?dt.answer:'',st=dt?dt.status:'',key=state.key[qn].correct;
+for(let j=0;j<c.n;j++){const bx=c.bx+j*c.step;ctx.beginPath();ctx.arc(bx,y,c.d/2,0,Math.PI*2);ctx.fillStyle=ans===LET[j]?'#111':'#fff';ctx.fill();ctx.lineWidth=2.2;ctx.strokeStyle='#000';ctx.stroke();
+if(r&&(st==='Incorrecta'||st==='Sin responder')&&key===LET[j]){ctx.beginPath();ctx.arc(bx,y,c.d/2+2.6,0,Math.PI*2);ctx.lineWidth=2.6;ctx.strokeStyle='#16a34a';ctx.stroke()}}
+if(r)drawVerdict(ctx,c.boxX,y,st)}
+const by=1002,bh=32;ctx.lineWidth=1.8;ctx.strokeStyle=col;ctx.strokeRect(c.x,by,c.w,bh);ctx.textAlign='left';ctx.fillStyle='#111';ctx.font='9.5px Arial';ctx.fillText('PUNTAJE DEL CAMPO',c.x+6,by+12);ctx.font='bold 14px Arial';
+if(r){const f=(r.fields&&r.fields[c.k])||{got:0,possible:0};ctx.fillStyle=col;ctx.fillText(fmt(f.got)+' / '+fmt(f.possible),c.x+6,by+27)}else ctx.fillText('______ / '+fmt(fieldMax(c.k)),c.x+6,by+27)})}
+function renderPrint(){const host=$('printPages');if(!host)return;host.innerHTML='';const L=state.layout,d=Number($('bubbleSize')?.value||24),cfg=geom(L.counts,L.opts,d,currentRowH(d),false);
+sheetList(cfg.pages).forEach(({s,p,pages})=>{const wrap=document.createElement('div');wrap.className='print-sheet';const c=document.createElement('canvas');c.className='print-page';c.width=SHEET_W;c.height=SHEET_H;wrap.appendChild(c);host.appendChild(wrap);const ctx=c.getContext('2d');
+ctx.fillStyle='#fff';ctx.fillRect(0,0,SHEET_W,SHEET_H);ctx.fillStyle='#000';MARKERS.forEach(([x,y])=>ctx.fillRect(x-17,y-17,34,34));
+ctx.textBaseline='alphabetic';ctx.textAlign='left';ctx.fillStyle='#111';
+ctx.font='bold 24px Arial';ctx.fillText(String(state.school||'ESCUELA').toUpperCase(),80,66,520);ctx.font='bold 20px Arial';ctx.fillText(String(state.examName||'Evaluación'),80,96,520);
+ctx.font='16px Arial';ctx.fillText('Grupo: '+(s?s.group:(state.group||'______')),80,128);ctx.fillText('Fecha: ______________',300,128);ctx.fillText('Nombre: '+(s?s.name:'________________________________'),80,158,520);
+if(s){ctx.font='12px Arial';ctx.fillText('ID: '+s.id,80,176)}
+ctx.font='bold 18px Arial';ctx.fillText('HOJA DE RESPUESTAS · OMR',80,208);ctx.font='13px Arial';ctx.fillText('Rellena por completo UN solo círculo por pregunta con lápiz o bolígrafo oscuro.',80,232,520);ctx.font='12px Arial';ctx.fillText(`Página ${p} de ${pages} · ${state.total} reactivos en ${cfg.cols.length} campo(s) formativo(s)`,80,252,520);
+const payload=['EDS2',state.examId,cleanId(s?s.id:'')||'-',p,pages,state.total,L.counts.join('.'),L.opts.join(''),d,cfg.rowH].join('|');drawQR(ctx,payload,QR_BOX.x,QR_BOX.y,QR_BOX.s);
+ctx.fillStyle='#111';ctx.font='10px Arial';ctx.fillText('No tapes ni dobles el código QR',630,216);ctx.font='bold 12px Arial';ctx.fillText('Marca así:',630,246);ctx.beginPath();ctx.arc(710,242,8,0,Math.PI*2);ctx.fill();
+drawColumns(ctx,cfg,p,null);
+ctx.fillStyle='#111';ctx.textAlign='left';ctx.font='11px Arial';ctx.fillText('EduScan OMR · No dobles ni arrugues la hoja. Si corriges, borra por completo la marca anterior. · Examen '+state.examId,80,1062,660)})}
+/* ===== Hoja calificada (✓ / ✗ y puntaje por campo) ===== */
+let lastGraded=null;
+function drawGradedSheet(c,r,p,cfg){const ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,SHEET_W,SHEET_H);ctx.textBaseline='alphabetic';ctx.textAlign='left';ctx.fillStyle='#111';
+ctx.font='bold 24px Arial';ctx.fillText(String(state.school||'ESCUELA').toUpperCase(),62,56,520);ctx.font='bold 19px Arial';ctx.fillText(String(r.exam||state.examName||'Evaluación'),62,86,520);
+ctx.font='16px Arial';ctx.fillStyle=r.studentId?'#111':'#b91c1c';ctx.fillText('Alumno: '+(r.name||'—')+(r.studentId?'  (ID '+r.studentId+')':''),62,120,520);ctx.fillStyle='#111';ctx.fillText('Grupo: '+(r.group||'—'),62,146);ctx.fillText('Fecha: '+new Date(r.date||Date.now()).toLocaleDateString('es-MX'),300,146);
+ctx.font='bold 18px Arial';ctx.fillText('HOJA DE RESULTADOS'+(r.preview?' (vista previa)':''),62,184);
+ctx.font='12px Arial';ctx.fillText(`Página ${p} de ${cfg.pages}`,62,206);
+// leyenda
+ctx.font='12px Arial';let lx=62;[['Correcta','Correcta'],['Incorrecta','Incorrecta'],['Sin responder','Sin responder'],['Anulado','Anulada']].forEach(([st,t])=>{drawVerdict(ctx,lx,230,st);ctx.fillStyle='#111';ctx.textAlign='left';ctx.font='12px Arial';ctx.fillText(t,lx+24,234);lx+=ctx.measureText(t).width+46});
+ctx.beginPath();ctx.arc(lx+8,230,7,0,Math.PI*2);ctx.lineWidth=2.6;ctx.strokeStyle='#16a34a';ctx.stroke();ctx.fillStyle='#111';ctx.fillText('Respuesta correcta',lx+22,234,120);
+// calificación
+const sfx=state.scale==='10'?'/10':state.scale==='porcentaje'?'%':state.scale==='100'?'/100':'/'+state.customScale;
+ctx.lineWidth=2;ctx.strokeStyle='#4338ca';ctx.strokeRect(600,34,188,152);ctx.fillStyle='#4338ca';ctx.textAlign='center';ctx.font='bold 12px Arial';ctx.fillText('CALIFICACIÓN',694,54);ctx.font='bold 46px Arial';ctx.fillText(r.grade.toFixed(1),694,106);ctx.font='bold 13px Arial';ctx.fillText(sfx,694,124);ctx.fillStyle='#111';ctx.font='12px Arial';ctx.fillText(`${fmt(r.got)} de ${fmt(r.possible)} pts · ${r.pct.toFixed(1)}%`,694,146);ctx.fillText(`${r.correct} correctas · ${r.wrong} incorrectas`,694,163,176);ctx.fillText(`${r.blank} sin responder`,694,178);
+drawColumns(ctx,cfg,p,r);
+ctx.textAlign='left';ctx.fillStyle='#111';ctx.font='bold 11px Arial';ctx.fillText(`Total: ${fmt(r.got)} / ${fmt(r.possible)} puntos · Calificación ${r.grade.toFixed(1)}${sfx} · EduScan OMR · Examen ${state.examId}`,62,1062,700)}
+function gradedCfg(){const L=state.layout,d=Number($('bubbleSize')?.value||24);return geom(L.counts,L.opts,d,currentRowH(d),true)}
+function showGraded(r,scroll){if(!r||!r.detail)r=Object.assign({},r,gradeAnswers(r.answers||[]));if(!r.fields)r=Object.assign({},r,gradeAnswers(r.answers||[]));lastGraded=r;const cfg=gradedCfg(),host=$('gradedHost');host.innerHTML='';$('gradedWrap').classList.remove('hidden');$('gradedTitle').textContent=(r.name||'')+(r.preview?' · vista previa (sin guardar)':'');
+for(let p=1;p<=cfg.pages;p++){const w=document.createElement('div');w.className='print-sheet';const c=document.createElement('canvas');c.className='print-page';c.width=SHEET_W;c.height=SHEET_H;w.appendChild(c);host.appendChild(w);drawGradedSheet(c,r,p,cfg)}
+if(scroll)$('gradedWrap').scrollIntoView({behavior:'smooth',block:'start'})}
+function refreshGraded(){const txt=$('scanAnswers').value.trim();if(!txt)return;const stu=state.students.find(s=>s.id===$('scanStudent').value),answers=parseAnswers(txt),g=gradeAnswers(answers);showGraded({name:stu?stu.name:'Alumno sin identificar',studentId:stu?stu.id:'',group:stu?stu.group:'—',answers,...g,date:new Date().toISOString(),exam:state.examName,preview:true})}
+let _rg;$('scanAnswers').addEventListener('input',()=>{clearTimeout(_rg);_rg=setTimeout(refreshGraded,350)});$('scanStudent').addEventListener('change',()=>{if($('scanAnswers').value.trim())refreshGraded()});
+$('gradedPdf').addEventListener('click',()=>{try{downloadCanvasPagesAsPDF([...document.querySelectorAll('#gradedHost canvas')],'EduScan_hoja_calificada_'+String(lastGraded?.name||'alumno').replace(/[^a-z0-9_-]/gi,'_')+'.pdf')}catch(e){toast('No se pudo crear el PDF. Usa “Imprimir” y elige “Guardar como PDF”.')}});
+$('gradedPrint').addEventListener('click',()=>{document.body.classList.add('pg');const off=()=>{document.body.classList.remove('pg');window.removeEventListener('afterprint',off)};window.addEventListener('afterprint',off);setTimeout(()=>window.print(),80)});
+function renderScanPages(n){const sel=$('scanPage'),d=Number($('bubbleSize').value||24);if(!n)n=geom(state.layout.counts,state.layout.opts,d,currentRowH(d),false).pages;const cur=sel.value||'1';sel.innerHTML=Array.from({length:n},(_,i)=>`<option value="${i+1}">Página ${i+1} de ${n}</option>`).join('');sel.value=Number(cur)<=n?cur:'1'}
+function fieldScoreChips(r){return(r.fields||[]).map((f,k)=>state.layout.counts[k]?`<span title="${esc(fields[k])}">${ABBR[k]} ${fmt(f.got)}/${fmt(f.possible)}</span>`:'').join('')}
+/* ===== Distribución por campo formativo ===== */
+function setCount(k,v){const c=state.layout.counts,T=state.total;c[k]=Math.max(0,Math.min(T,Math.round(v)||0));let diff=c.reduce((a,b)=>a+b,0)-T;const others=[0,1,2,3].filter(j=>j!==k).reverse();if(diff>0){for(const j of others){if(diff<=0)break;const t=Math.min(diff,c[j]);c[j]-=t;diff-=t}if(diff>0)c[k]-=diff}else if(diff<0)c[others[0]]-=diff}
+function layoutChanged(){syncKeyFields();save();renderLayout();renderKey();renderPrint();renderScanPages();regradeAll()}
+function renderLayout(){const host=$('layoutHost');if(!host)return;const L=state.layout,off=offsets(L.counts);$('totalQuestions').value=state.total;
+host.innerHTML=fields.map((f,k)=>`<div class="lay-card" style="--c:${FCOL[k]}"><h4>${f}</h4><div class="rng">${L.counts[k]?`Reactivos ${off[k]+1}–${off[k]+L.counts[k]}`:'Sin reactivos (no aparece en la hoja)'}</div><div class="field"><label>Reactivos</label><input type="number" min="0" max="${state.total}" step="1" value="${L.counts[k]}" data-lc="${k}"></div><div class="field"><label>Incisos por reactivo</label><select data-lo="${k}">${[2,3,4,5,6].map(n=>`<option value="${n}" ${L.opts[k]===n?'selected':''}>${n} incisos (A–${LET[n-1]})</option>`).join('')}</select></div><div class="chips">${LET.slice(0,L.opts[k]).split('').map(a=>`<span class="chip">${a}</span>`).join('')}</div><div class="field"><label>Puntos del campo formativo</label><input type="number" min="0" step=".5" value="${state.fieldPoints[k]}" data-lp="${k}"></div></div>`).join('');
+const tp=state.fieldPoints.reduce((a,b,k)=>a+(L.counts[k]?Number(b)||0:0),0),camp=state.weightMode==='campos';
+$('laySum').className='lay-sum'+(camp?'':' bad');$('laySum').innerHTML=`<b>${state.total} reactivos</b><span>·</span><span>Puntos totales: <b>${fmt(tp)}</b></span><span>·</span><span>${camp?'Cada campo reparte sus puntos entre sus reactivos activos.':'La ponderación actual no es “Por campo formativo”: los puntos de campo no se aplican.'}</span>${camp?'':'<button class="secondary" data-usecampos style="padding:6px 10px;min-height:0">Usar ponderación por campo</button>'}`;
+host.querySelectorAll('[data-lc]').forEach(el=>el.addEventListener('change',()=>{setCount(+el.dataset.lc,Number(el.value));layoutChanged()}));
+host.querySelectorAll('[data-lo]').forEach(el=>el.addEventListener('change',()=>{state.layout.opts[+el.dataset.lo]=Number(el.value);layoutChanged()}));
+host.querySelectorAll('[data-lp]').forEach(el=>el.addEventListener('change',()=>{state.fieldPoints[+el.dataset.lp]=Math.max(0,Number(el.value)||0);save();renderLayout();renderPrint();regradeAll()}));
+const b=$('laySum').querySelector('[data-usecampos]');if(b)b.onclick=()=>{state.weightMode='campos';$('weightMode').value='campos';save();renderLayout();renderPrint();regradeAll()}}
+
+/* ===== Lectura OMR ===== */
+function grayFromImage(img,maxSide){const s=Math.min(1,maxSide/Math.max(img.naturalWidth,img.naturalHeight)),w=Math.round(img.naturalWidth*s),h=Math.round(img.naturalHeight*s),c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(img,0,0,w,h);const d=x.getImageData(0,0,w,h).data,g=new Uint8Array(w*h);for(let i=0,k=0;i<g.length;i++,k+=4)g[i]=(d[k]*.299+d[k+1]*.587+d[k+2]*.114)|0;return{g,w,h}}
+function integral(a,w,h){const W=w+1,I=new Float64Array(W*(h+1));for(let y=1;y<=h;y++){let r=0;for(let x=1;x<=w;x++){r+=a[(y-1)*w+x-1];I[y*W+x]=I[(y-1)*W+x]+r}}return I}
+function boxSum(I,w,x0,y0,x1,y1){const W=w+1;return I[y1*W+x1]-I[y0*W+x1]-I[y1*W+x0]+I[y0*W+x0]}
+function findMarkers(im){const{g,w,h}=im,I=integral(g,w,h),R=Math.max(8,Math.round(w/14)),bin=new Uint8Array(w*h);
+for(let y=0;y<h;y++){const y0=Math.max(0,y-R),y1=Math.min(h,y+R+1);for(let x=0;x<w;x++){const x0=Math.max(0,x-R),x1=Math.min(w,x+R+1),m=boxSum(I,w,x0,y0,x1,y1)/((x1-x0)*(y1-y0));if(g[y*w+x]<m*.65)bin[y*w+x]=1}}
+const lab=new Uint8Array(w*h),stack=new Int32Array(w*h),cands=[];
+for(let i=0;i<w*h;i++){if(!bin[i]||lab[i])continue;let sp=0,area=0,sx=0,sy=0,x0=w,x1=0,y0=h,y1=0;stack[sp++]=i;lab[i]=1;
+while(sp){const p=stack[--sp],px=p%w,py=(p-px)/w;area++;sx+=px;sy+=py;if(px<x0)x0=px;if(px>x1)x1=px;if(py<y0)y0=py;if(py>y1)y1=py;
+if(px>0&&bin[p-1]&&!lab[p-1]){lab[p-1]=1;stack[sp++]=p-1}if(px<w-1&&bin[p+1]&&!lab[p+1]){lab[p+1]=1;stack[sp++]=p+1}if(py>0&&bin[p-w]&&!lab[p-w]){lab[p-w]=1;stack[sp++]=p-w}if(py<h-1&&bin[p+w]&&!lab[p+w]){lab[p+w]=1;stack[sp++]=p+w}}
+const bw=x1-x0+1,bh=y1-y0+1;if(area<(w*.012)**2||area>w*h*.03)continue;const fill=area/(bw*bh),ar=bw/bh;if(fill>.72&&ar>.6&&ar<1.65)cands.push({x:sx/area,y:sy/area,area,fill})}
+const q=[[0,0],[1,0],[1,1],[0,1]].map(([qx,qy])=>cands.filter(c=>(c.x>w/2)===!!qx&&(c.y>h/2)===!!qy).sort((a,b)=>b.area*b.fill-a.area*a.fill)[0]);
+if(!q.every(Boolean))return null;const ar=q.map(m=>m.area);if(Math.max(...ar)/Math.min(...ar)>4)return null;return q}
+function solveH(src,dst){const A=[],b=[];for(let i=0;i<4;i++){const[x,y]=src[i],[u,v]=dst[i];A.push([x,y,1,0,0,0,-u*x,-u*y]);b.push(u);A.push([0,0,0,x,y,1,-v*x,-v*y]);b.push(v)}
+const n=8;for(let c=0;c<n;c++){let p=c;for(let r=c+1;r<n;r++)if(Math.abs(A[r][c])>Math.abs(A[p][c]))p=r;[A[c],A[p]]=[A[p],A[c]];[b[c],b[p]]=[b[p],b[c]];for(let r=c+1;r<n;r++){const f=A[r][c]/A[c][c];for(let k=c;k<n;k++)A[r][k]-=f*A[c][k];b[r]-=f*b[c]}}
+const h=new Array(8);for(let r=n-1;r>=0;r--){let s=b[r];for(let k=r+1;k<n;k++)s-=A[r][k]*h[k];h[r]=s/A[r][r]}return h}
+function applyH(h,x,y){const d=h[6]*x+h[7]*y+1;return[(h[0]*x+h[1]*y+h[2])/d,(h[3]*x+h[4]*y+h[5])/d]}
+function warp(im,h,x0,y0,w,hh,s){const out=new Float32Array(w*hh),{g,w:iw,h:ih}=im;for(let v=0;v<hh;v++)for(let u=0;u<w;u++){const[px,py]=applyH(h,x0+u/s,y0+v/s),ix=Math.floor(px),iy=Math.floor(py);if(ix<0||iy<0||ix>=iw-1||iy>=ih-1){out[v*w+u]=255;continue}const fx=px-ix,fy=py-iy,k=iy*iw+ix;out[v*w+u]=g[k]*(1-fx)*(1-fy)+g[k+1]*fx*(1-fy)+g[k+iw]*(1-fx)*fy+g[k+iw+1]*fx*fy}return out}
+function parseQR(t){const p=String(t).split('|');if(p[0]!=='EDS2'||p.length<10)return null;const counts=p[6].split('.').map(Number),opts=[...p[7]].map(Number);if(counts.length!==4||opts.length!==4||counts.some(isNaN)||opts.some(x=>!(x>=2&&x<=6)))return null;return{exam:p[1],student:p[2]==='-'?'':p[2],page:+p[3],pages:+p[4],total:+p[5],counts,opts,d:+p[8],r:+p[9]}}
+function qrFromGray(f,w,h){if(typeof jsQR!=='function')return null;const rgba=new Uint8ClampedArray(w*h*4);for(let i=0;i<f.length;i++){const v=f[i];rgba[i*4]=rgba[i*4+1]=rgba[i*4+2]=v;rgba[i*4+3]=255}const r=jsQR(rgba,w,h,{inversionAttempts:'attemptBoth'});return r&&r.data?parseQR(r.data):null}
+const QR_BLK={1:[13],2:[22],3:[17,17],4:[24,24],5:[15,15,16,16],6:[19,19,19,19]};
+function qrMask(m,i,j){return[(i+j)%2==0,i%2==0,j%3==0,(i+j)%3==0,(Math.floor(i/2)+Math.floor(j/3))%2==0,(i*j)%2+(i*j)%3==0,((i*j)%2+(i*j)%3)%2==0,((i*j)%3+(i+j)%2)%2==0][m]}
+function qrFmt(d){const dg=x=>{let n=0;while(x){n++;x>>>=1}return n};let v=d<<10;while(dg(v)-dg(0x537)>=0)v^=0x537<<(dg(v)-dg(0x537));return((d<<10)|v)^0x5412}
+function qrDecodeMatrix(M,n){const v=(n-17)/4,pc=x=>{let c=0;while(x){c+=x&1;x>>=1}return c};
+let f1=0,f2=0;for(let i=0;i<15;i++){const a=i<6?M[i][8]:i<8?M[i+1][8]:M[n-15+i][8],b=i<8?M[8][n-i-1]:i<9?M[8][7]:M[8][14-i];f1|=a<<i;f2|=b<<i}
+let mask=-1,best=99;for(let m=0;m<8;m++){const t=qrFmt(24|m),d=Math.min(pc(t^f1),pc(t^f2));if(d<best){best=d;mask=m}}if(best>3)return null;
+const fn=Array.from({length:n},()=>new Uint8Array(n)),set=(r0,r1,c0,c1)=>{for(let r=r0;r<=r1;r++)for(let c=c0;c<=c1;c++)fn[r][c]=1};
+set(0,8,0,8);set(0,8,n-8,n-1);set(n-8,n-1,0,8);for(let i=0;i<n;i++){fn[6][i]=1;fn[i][6]=1}if(v>=2)set(n-9,n-5,n-9,n-5);
+const bits=[];let row=n-1,inc=-1;for(let col=n-1;col>0;col-=2){if(col===6)col--;for(;;){for(let c=0;c<2;c++){const cc=col-c;if(!fn[row][cc])bits.push(M[row][cc]^(qrMask(mask,row,cc)?1:0))}row+=inc;if(row<0||row>=n){row-=inc;inc=-inc;break}}}
+const cw=[];for(let i=0;i+8<=bits.length;i+=8){let b=0;for(let k=0;k<8;k++)b=b<<1|bits[i+k];cw.push(b)}
+const bl=QR_BLK[v];if(!bl)return null;const blocks=bl.map(()=>[]);let idx=0;for(let i=0;i<Math.max(...bl);i++)bl.forEach((len,k)=>{if(i<len)blocks[k].push(cw[idx++])});const data=[].concat(...blocks);
+if(data[0]>>4!==4)return null;const len=((data[0]&15)<<4)|(data[1]>>4);let s='';for(let i=0;i<len;i++)s+=String.fromCharCode(((data[1+i]&15)<<4)|(data[2+i]>>4));return s}
+function readQR(im,H){const s=4,W=QR_BOX.s*s,f=warp(im,H,QR_BOX.x,QR_BOX.y,W,W,s),sr=Float32Array.from(f).sort(),thr=(sr[Math.floor(sr.length*.03)]+sr[Math.floor(sr.length*.97)])/2;
+for(let v=1;v<=6;v++){const n=17+4*v,cell=Math.floor(QR_BOX.s/(n+8)),M=[];for(let r=0;r<n;r++){M.push([]);for(let c=0;c<n;c++){let t=0;for(let a=-3;a<=3;a+=3)for(let b=-3;b<=3;b+=3){const x=Math.round((c+4.5)*cell*s+a),y=Math.round((r+4.5)*cell*s+b);t+=f[Math.min(W-1,Math.max(0,y))*W+Math.min(W-1,Math.max(0,x))]}M[r].push(t/9<thr?1:0)}}
+const txt=qrDecodeMatrix(M,n);if(txt){const q=parseQR(txt);if(q)return q}}return null}
+function normalizeIllum(f,w,h){const R=30,I=integral(f,w,h),a=new Float64Array(w*h),b=new Float64Array(w*h);
+for(let y=0;y<h;y++){const y0=Math.max(0,y-R),y1=Math.min(h,y+R+1);for(let x=0;x<w;x++){const x0=Math.max(0,x-R),x1=Math.min(w,x+R+1),m=boxSum(I,w,x0,y0,x1,y1)/((x1-x0)*(y1-y0)),k=y*w+x;if(f[k]>m*.85){a[k]=f[k];b[k]=1}}}
+const Ia=integral(a,w,h),Ib=integral(b,w,h),D=new Float32Array(w*h);
+for(let y=0;y<h;y++){const y0=Math.max(0,y-R),y1=Math.min(h,y+R+1);for(let x=0;x<w;x++){const x0=Math.max(0,x-R),x1=Math.min(w,x+R+1),cnt=boxSum(Ib,w,x0,y0,x1,y1),bg=cnt>20?boxSum(Ia,w,x0,y0,x1,y1)/cnt:200,k=y*w+x;D[k]=Math.min(1,Math.max(0,1-f[k]/Math.max(bg,40)))}}return D}
+function measureBubble(D,W,H,cx,cy,r){const ring=(x,y)=>{let s=0;for(let a=0;a<20;a++){const t=a*Math.PI/10,px=Math.round(x+Math.cos(t)*r),py=Math.round(y+Math.sin(t)*r);if(px>=0&&py>=0&&px<W&&py<H)s+=D[py*W+px]}return s/20};
+let bs=-1,bx=cx,by=cy;for(let dy=-4;dy<=4;dy++)for(let dx=-4;dx<=4;dx++){const s=ring(cx+dx,cy+dy)-.004*(dx*dx+dy*dy);if(s>bs){bs=s;bx=cx+dx;by=cy+dy}}
+const ri=r*.62;let sum=0,dark=0,n=0;for(let y=Math.floor(by-ri);y<=Math.ceil(by+ri);y++)for(let x=Math.floor(bx-ri);x<=Math.ceil(bx+ri);x++){if((x-bx)**2+(y-by)**2>ri*ri||x<0||y<0||x>=W||y>=H)continue;const v=D[y*W+x];sum+=v;if(v>.3)dark++;n++}
+return{score:n?.5*sum/n+.5*dark/n:0,x:bx,y:by}}
+function fixAnswer(q,a){const arr=Array.from({length:state.total},(_,i)=>parseAnswers($('scanAnswers').value)[i]||'');arr[q-1]=a==='—'?'':a;$('scanAnswers').value=arr.join(',');refreshGraded()}
+async function detectOMR(){
+if(!currentScanImage){toast('Primero selecciona o toma una foto de la hoja.');return}
+const st=$('detectStatus');st.textContent='Analizando: buscando marcas de esquina y código QR…';await new Promise(r=>setTimeout(r,30));
+$('scanStudent').disabled=false;scanQrStudent='';const im=grayFromImage(currentScanImage,2000),mk=findMarkers(im);let H=null,qr=null,qrNote='';
+if(!mk){$('qrInfo').textContent='';st.textContent='No se detectaron las 4 marcas negras de las esquinas. Encuadra la hoja completa, de frente, con buena luz y sin cortar los cuadros negros.';return}
+const ord=mk.map(m=>[m.x,m.y]);
+for(let k=0;k<4&&!qr;k++){const dst=[0,1,2,3].map(i=>ord[(i+k)%4]),h=solveH(MARKERS,dst),q=readQR(im,h);if(q){qr=q;H=h}}
+if(!H){H=solveH(MARKERS,ord);qrNote='No se pudo leer el QR; se usan los ajustes manuales de página y tamaño de alvéolo.'}
+const lay=qr?{counts:qr.counts,opts:qr.opts}:state.layout,dReq=qr?qr.d:Number($('bubbleSize').value||24),cfg=geom(lay.counts,lay.opts,dReq,qr?qr.r:currentRowH(dReq),false),warnings=[];renderScanPages(cfg.pages);
+if(qr){if(qr.exam!==state.examId)warnings.push('El QR pertenece a otro examen/plantilla ('+qr.exam+').');if(qr.total!==state.total||qr.counts.join('.')!==state.layout.counts.join('.')||qr.opts.join('')!==state.layout.opts.join(''))warnings.push('La distribución de la hoja (reactivos e incisos por campo) no coincide con la plantilla actual; revisa la clave antes de calificar.');
+if([...$('scanPage').options].some(o=>+o.value===qr.page))$('scanPage').value=qr.page;
+const stu=qr.student&&state.students.find(s=>cleanId(s.id)===qr.student);if(stu){$('scanStudent').value=stu.id;$('scanStudent').disabled=true;scanQrStudent=stu.id}else if(qr.student)warnings.push('Alumno '+qr.student+' no está registrado; selecciónalo manualmente.')}
+const f=warp(im,H,0,0,SHEET_W,SHEET_H,1),D=normalizeIllum(f,SHEET_W,SHEET_H);
+const page=Math.min(cfg.pages,Number($('scanPage').value||1)),L=LET.split(''),rows=[],all=[];
+cfg.cols.forEach(c=>{for(let l=0;l<cfg.rpp;l++){const idx=(page-1)*cfg.rpp+l;if(idx>=c.cnt)break;const y=cfg.startY+l*cfg.rowH,bs=[];for(let j=0;j<c.n;j++){const m=measureBubble(D,SHEET_W,SHEET_H,c.bx+j*c.step,y,c.d/2);bs.push(m);all.push(m.score)}rows.push({qi:c.off+idx,n:c.n,bs})}});const count=rows.length;
+const sorted=[...all].sort((a,b)=>a-b),lo=sorted[Math.floor(sorted.length*.2)]||0,hi=sorted[sorted.length-1]||0,sens={alta:[.22,.13],normal:[.30,.18],baja:[.42,.26]}[$('scanSens').value||'normal'],T=lo+Math.max(sens[1],sens[0]*(hi-lo));
+const owner=$('scanStudent').value;if(!owner)warnings.push('Esta hoja no identifica al alumno (hoja en blanco): selecciona al alumno antes de calificar y guardar.');let arr=(answersOwner===owner||answersOwner==='')?Array.from({length:state.total},(_,i)=>parseAnswers($('scanAnswers').value)[i]||''):Array(state.total).fill('');answersOwner=owner;
+const flags=[],ansPage=[];
+rows.forEach((rw,l)=>{const bs=rw.bs,sc=bs.map(b=>b.score),marks=sc.map((s,j)=>({s,j})).filter(o=>o.s>=T).sort((a,b)=>b.s-a.s);let ans='',flag='';
+if(marks.length===1)ans=L[marks[0].j];else if(marks.length>1){if(marks[0].s-marks[1].s>=.3){ans=L[marks[0].j];flag='dos marcas, se tomó la más oscura'}else flag='marca múltiple'}else if(Math.max(...sc)>=lo+.6*(T-lo))flag='marca muy tenue';
+arr[rw.qi]=ans;ansPage.push({ans,flag});if(flag)flags.push({q:rw.qi+1,flag})});
+$('scanAnswers').value=arr.join(',');
+const cv=$('scanOverlay');cv.width=SHEET_W;cv.height=SHEET_H;const ctx=cv.getContext('2d'),img=ctx.createImageData(SHEET_W,SHEET_H);for(let i=0;i<D.length;i++){const v=255-Math.min(255,D[i]*300);img.data[i*4]=img.data[i*4+1]=img.data[i*4+2]=v;img.data[i*4+3]=255}ctx.putImageData(img,0,0);
+rows.forEach((rw,l)=>{const a=ansPage[l];rw.bs.forEach((b,j)=>{const sel=a.ans===L[j];ctx.beginPath();ctx.arc(b.x,b.y,12,0,Math.PI*2);ctx.lineWidth=sel?4:1;ctx.strokeStyle=sel?(a.flag?'#d97706':'#16a34a'):(a.flag&&b.score>=lo+.6*(T-lo)?'#d97706':'#94a3b8');ctx.stroke()})});
+cv.classList.remove('hidden');
+const marked=ansPage.filter(a=>a.ans).length;
+$('qrInfo').innerHTML=qr?`<b>QR leído ✓</b> · Examen ${qr.exam} · ${qr.student?'Alumno '+qr.student:'Hoja en blanco'} · Página ${qr.page}/${qr.pages} · Alvéolo ${qr.d}px`:`<span style="color:#b45309">${qrNote}</span>`;
+st.textContent=`Página ${page}: ${marked}/${count} respuestas detectadas · Umbral de marca ${(T*100).toFixed(0)}% (base ${(lo*100).toFixed(0)}%).`;
+const stuSel=state.students.find(s=>s.id===owner);$('scanSummary').innerHTML=`<div style="font-size:16px;margin-bottom:6px">${stuSel?'Hoja de <b>'+esc(stuSel.name)+'</b> · '+esc(stuSel.group):'<b style="color:#b45309">Alumno sin identificar</b>'}</div><b>Hoja alineada y corregida.</b> Se normalizó la iluminación y se corrigió la perspectiva. ${marked} de ${count} alvéolos marcados.`;
+$('scanReview').innerHTML=(warnings.length?`<div style="color:#b45309;margin-bottom:8px">⚠ ${warnings.join('<br>⚠ ')}</div>`:'')+(flags.length?`<b>Revisar ${flags.length} reactivo(s):</b>`+flags.map(f=>`<div class="bubble-row"><span><b>#${f.q}</b> · ${f.flag}</span><span class="choices">${['A','B','C','D','—'].map(a=>`<button class="light" style="padding:4px 9px" data-fq="${f.q}" data-fa="${a}">${a}</button>`).join('')}</span></div>`).join(''):'Sin marcas dudosas. Verifica visualmente (verde = respuesta detectada).');
+$('scanReview').querySelectorAll('[data-fq]').forEach(b=>b.onclick=()=>{fixAnswer(+b.dataset.fq,b.dataset.fa);b.parentElement.querySelectorAll('button').forEach(x=>x.className='light');b.className='secondary'});
+refreshGraded();toast('Detección terminada. Se generó la hoja calificada (vista previa); revisa los reactivos marcados antes de guardar.')}
+$('detectBubbles').addEventListener('click',detectOMR);$('sheetMode').addEventListener('change',renderPrint);
+$('printSheet').addEventListener('click',()=>{renderPrint();setTimeout(()=>window.print(),120)});
+$('downloadPdf').addEventListener('click',()=>{try{renderPrint();downloadCanvasPagesAsPDF(Array.from(document.querySelectorAll('#printPages canvas')),`EduScan_${(state.examName||'hojas').replace(/[^a-z0-9_-]/gi,'_')}.pdf`)}catch(e){toast('No se pudo crear el PDF. Usa “Imprimir” y elige “Guardar como PDF”.')}});
+function downloadCanvasPagesAsPDF(canvases,filename){
+ if(!canvases.length)throw new Error('No hay hojas para exportar');
+ const enc=new TextEncoder(),parts=[],offsets=[0];let length=0;
+ const pushStr=t=>{const b=enc.encode(t);parts.push(b);length+=b.length};
+ const pushBytes=b=>{parts.push(b);length+=b.length};
+ const obj=(n,body)=>{offsets[n]=length;pushStr(`${n} 0 obj\n${body}\nendobj\n`)};
+ pushStr('%PDF-1.4\n%âãÏÓ\n');
+ const count=2+canvases.length*3;
+ obj(1,'<< /Type /Catalog /Pages 2 0 R >>');
+ obj(2,`<< /Type /Pages /Kids [${canvases.map((_,i)=>`${3+i*3} 0 R`).join(' ')}] /Count ${canvases.length} >>`);
+ canvases.forEach((c,i)=>{
+  const page=3+i*3,img=page+1,content=page+2;
+  const data=c.toDataURL('image/jpeg',0.94).split(',')[1],bin=atob(data),bytes=new Uint8Array(bin.length);
+  for(let j=0;j<bin.length;j++)bytes[j]=bin.charCodeAt(j);
+  obj(page,`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /XObject << /Im${i} ${img} 0 R >> >> /Contents ${content} 0 R >>`);
+  offsets[img]=length;pushStr(`${img} 0 obj\n<< /Type /XObject /Subtype /Image /Width ${c.width} /Height ${c.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${bytes.length} >>\nstream\n`);pushBytes(bytes);pushStr('\nendstream\nendobj\n');
+  const stream=`q\n612 0 0 792 0 0 cm\n/Im${i} Do\nQ`;
+  obj(content,`<< /Length ${enc.encode(stream).length} >>\nstream\n${stream}\nendstream`);
+ });
+ const xref=length;pushStr(`xref\n0 ${count+1}\n0000000000 65535 f \n`);
+ for(let i=1;i<=count;i++)pushStr(`${String(offsets[i]).padStart(10,'0')} 00000 n \n`);
+ pushStr(`trailer\n<< /Size ${count+1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`);
+ const blob=new Blob(parts,{type:'application/pdf'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);toast('PDF generado y listo para descargar.');
+}
+$('bubbleSize').addEventListener('change',()=>{renderPrint();renderScanPages()});$('rowSpacing').addEventListener('change',()=>{renderPrint();renderScanPages()});
+function download(name,content,type='text/plain'){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();URL.revokeObjectURL(a.href)}
+$('downloadCsv').addEventListener('click',()=>download('plantilla_omr.csv','Pregunta,Respuesta correcta,Valor,Penalizacion,Estado,Campo formativo,Contenido,PDA,Competencia,Dificultad\n'+Array.from({length:state.total},(_,i)=>{let q=state.key[i+1];return [i+1,q.correct,points(i),q.penalty,q.status,q.field,q.content,q.pda,q.competency,q.difficulty].map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')}).join('\n'),'text/csv;charset=utf-8'));
+function renderResults(){const grades=state.results.map(r=>r.grade||0);$('resultCount').textContent=state.results.length;$('resultAverage').textContent=grades.length?(grades.reduce((a,b)=>a+b,0)/grades.length).toFixed(1):'0.0';$('resultMax').textContent=grades.length?Math.max(...grades).toFixed(1):'0';$('resultMin').textContent=grades.length?Math.min(...grades).toFixed(1):'0';$('resultRows').innerHTML=state.results.map(r=>`<tr><td>${r.name}</td><td>${r.group}</td><td>${r.correct}</td><td>${r.wrong}</td><td>${r.blank}</td><td>${r.got.toFixed(2)} / ${r.possible.toFixed(2)}</td><td>${r.pct.toFixed(1)}%</td><td><b>${r.grade.toFixed(1)}</b></td><td><div class="fsc">${fieldScoreChips(r)}</div></td><td style="white-space:nowrap"><button class="secondary" data-view-result="${r.id}">Ver hoja</button> <button class="danger" data-delete-result="${r.id}">Eliminar</button></td></tr>`).join('')||'<tr><td colspan="10">Todavía no hay resultados. Captura respuestas en el módulo Escáner OMR.</td></tr>';document.querySelectorAll('[data-delete-result]').forEach(b=>b.onclick=()=>{state.results=state.results.filter(r=>r.id!==b.dataset.deleteResult);save();renderResults()});document.querySelectorAll('[data-view-result]').forEach(b=>b.onclick=()=>{const r=state.results.find(x=>x.id===b.dataset.viewResult);if(r){navigate('scanner');showGraded(r,true)}});
+const itemRows=[];for(let i=1;i<=state.total;i++){if(state.key[i].status==='Anulado')continue;let correct=0,wrong=0,blank=0;state.results.forEach(r=>{const a=r.answers?.[i-1]||'';if(!a)blank++;else if(a===state.key[i].correct)correct++;else wrong++});let total=correct+wrong+blank,p=total?correct/total*100:0;itemRows.push(`<tr><td>${i}</td><td>${state.key[i].correct}</td><td>${correct}</td><td>${wrong}</td><td>${blank}</td><td>${total?p.toFixed(1)+'%':'—'}</td><td>${total?(p<40?'Alta':p>=80?'Baja':'Media'):'Sin datos'}</td></tr>`)}$('itemAnalysis').innerHTML=itemRows.join('')}
+$('exportCsv').addEventListener('click',()=>download('resultados_eduscan.csv','Alumno,Grupo,Aciertos,Errores,Sin responder,Puntos obtenidos,Puntos posibles,Porcentaje,Calificacion\n'+state.results.map(r=>[r.name,r.group,r.correct,r.wrong,r.blank,r.got,r.possible,r.pct,r.grade].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n'),'text/csv;charset=utf-8'));
+function renderVersions(){$('versionRows').innerHTML=state.versions.map(v=>`<div class="card" style="margin-bottom:10px;box-shadow:none"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><div><b>Versión ${v.version}</b><p class="muted small" style="margin:4px 0">${v.description} · ${v.date}</p></div><button class="secondary" data-restore="${v.version}">Restaurar</button></div></div>`).join('')||'<div class="empty">Aún no hay versiones guardadas.</div>';document.querySelectorAll('[data-restore]').forEach(b=>b.onclick=()=>{const v=state.versions.find(v=>v.version===Number(b.dataset.restore));if(!v||!v.snapshot)return;Object.assign(state,JSON.parse(JSON.stringify(v.snapshot)));migrate();save();syncSettings();regradeAll();renderKey();renderPrint();renderVersions();toast('Plantilla restaurada. Los resultados se recalcularon.')})}
+$('exportAll').addEventListener('click',()=>download('respaldo_eduscan.json',JSON.stringify(state,null,2),'application/json'));
+$('importBtn').addEventListener('click',()=>$('importFile').click());$('importFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const data=JSON.parse(await f.text());if(!data.key||!data.students||!data.results)throw new Error('Formato no reconocido');state=data;migrate();ensureExam();save();syncSettings();renderStudents();renderKey();renderResults();renderVersions();renderPrint();toast('Respaldo importado correctamente.')}catch(err){toast('No se pudo importar: archivo JSON no válido.')}e.target.value=''});
+function renderStats(){$('totalDisplay').value=state.total+' reactivos · '+state.layout.counts.filter(n=>n>0).length+' campos';$('statResults').textContent=state.results.length;$('statStudents').textContent=state.students.length;$('statQuestions').textContent=Array.from({length:state.total},(_,i)=>state.key[i+1].status==='Activo').filter(Boolean).length;$('statAverage').textContent=state.results.length?(state.results.reduce((a,r)=>a+r.grade,0)/state.results.length).toFixed(1):'0.0'}
+let reportSel='';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function latestResults(){const seen={};return state.results.filter(r=>!seen[r.studentId]&&(seen[r.studentId]=1))}
+function agg(r,prop){const m={};for(let i=1;i<=state.total;i++){const q=state.key[i];if(q.status==='Anulado')continue;const k=q[prop]||'—',a=(r.answers||[])[i-1]||'',e=m[k]=m[k]||{ok:0,n:0};e.n++;if(a===q.correct)e.ok++}return m}
+function groupAgg(res,prop){const m={};res.forEach(r=>{const a=agg(r,prop);for(const k in a){const e=m[k]=m[k]||{ok:0,n:0};e.ok+=a[k].ok;e.n+=a[k].n}});return m}
+function barSVG(rows,la,lb){const w=560,h=rows.length*(lb?38:26)+28;let s=`<svg viewBox="0 0 ${w} ${h}" style="width:100%;max-width:${w}px" font-family="system-ui,Arial" font-size="12">`;rows.forEach((r,i)=>{const y=i*(lb?38:26)+6;s+=`<text x="0" y="${y+11}" fill="#344054">${esc(r.l.length>28?r.l.slice(0,27)+'…':r.l)}</text><rect x="200" y="${y}" width="320" height="12" rx="6" fill="#eef2f7"/><rect x="200" y="${y}" width="${3.2*r.a}" height="12" rx="6" fill="#4338ca"/><text x="526" y="${y+11}" fill="#344054">${r.a.toFixed(0)}%</text>`;if(r.b!=null)s+=`<rect x="200" y="${y+15}" width="${3.2*r.b}" height="7" rx="3.5" fill="#f59e0b"/><text x="526" y="${y+22}" fill="#92400e" font-size="10">${r.b.toFixed(0)}%</text>`});return s+`<g transform="translate(200,${h-14})"><rect width="10" height="10" fill="#4338ca"/><text x="14" y="9">${la}</text>${lb?`<rect x="110" width="10" height="10" fill="#f59e0b"/><text x="124" y="9">${lb}</text>`:''}</g></svg>`}
+function donut(ok,bad,blank){const t=ok+bad+blank||1,R=48,C=2*Math.PI*R;let off=0,s='<svg viewBox="0 0 130 130" width="130" height="130"><g transform="rotate(-90 65 65)">';[[ok,'#0f9f8f'],[bad,'#dc2626'],[blank,'#cbd5e1']].forEach(([v,c])=>{const l=v/t*C;s+=`<circle cx="65" cy="65" r="${R}" fill="none" stroke="${c}" stroke-width="20" stroke-dasharray="${l} ${C-l}" stroke-dashoffset="${-off}"/>`;off+=l});return s+`</g><text x="65" y="70" text-anchor="middle" font-size="20" font-weight="700" font-family="Arial">${Math.round(ok/t*100)}%</text></svg>`}
+function strip(r){let s='',n=0;const per=25,rows=Math.ceil(state.total/per);s=`<svg viewBox="0 0 ${per*22} ${rows*22+4}" style="width:100%;max-width:560px" font-family="Arial" font-size="9" text-anchor="middle">`;for(let i=1;i<=state.total;i++){const q=state.key[i],a=(r.answers||[])[i-1]||'',x=((i-1)%per)*22,y=Math.floor((i-1)/per)*22,c=q.status==='Anulado'?'#e5e7eb':!a?'#cbd5e1':a===q.correct?'#0f9f8f':'#dc2626';s+=`<rect x="${x}" y="${y}" width="20" height="20" rx="4" fill="${c}"/><text x="${x+10}" y="${y+14}" fill="#fff">${i}</text>`}return s+'</svg>'}
+function reportPage(r,rank,n,res){const rows=(p,g)=>{const a=agg(r,p);return Object.keys(a).map(k=>({l:k,a:a[k].ok/a[k].n*100,b:g[k]?g[k].ok/g[k].n*100:null}))},cr=rows('competency',groupAgg(res,'competency')),fr=rows('field',groupAgg(res,'field')),avg=res.reduce((a,x)=>a+x.pct,0)/(res.length||1),sc=[...cr].sort((a,b)=>a.a-b.a),sfx=state.scale==='10'?'/10':state.scale==='porcentaje'?'%':state.scale==='100'?'/100':'/'+state.customScale;
+return `<div class="card report-page"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><div><h2 style="margin:0">${esc(r.name)}</h2><div class="muted">${esc(r.group)} · ${esc(r.exam||state.examName)} · ${new Date(r.date).toLocaleDateString('es-MX')}</div></div><div style="text-align:right"><div style="font-size:38px;font-weight:800;color:#4338ca;line-height:1">${r.grade.toFixed(1)}<small style="font-size:16px">${sfx}</small></div><div class="muted small">Lugar ${rank} de ${n} · promedio grupal ${avg.toFixed(0)}%</div></div></div>
+<div class="grid two" style="margin-top:14px;align-items:center"><div style="display:flex;gap:16px;align-items:center">${donut(r.correct,r.wrong,r.blank)}<div class="small"><div><b style="color:#0f9f8f">■</b> ${r.correct} correctas</div><div><b style="color:#dc2626">■</b> ${r.wrong} incorrectas</div><div><b style="color:#94a3b8">■</b> ${r.blank} sin responder</div><div class="muted">${r.got.toFixed(1)} de ${r.possible.toFixed(1)} puntos</div></div></div><div class="small"><div class="bar" style="height:14px"><span style="width:${r.pct}%"></span></div><div style="margin:4px 0 10px">${r.pct.toFixed(1)}% de aciertos (grupo: ${avg.toFixed(1)}%)</div>${sc.length?`<div>▲ <b>Fortaleza:</b> ${esc(sc[sc.length-1].l)} (${sc[sc.length-1].a.toFixed(0)}%)</div><div>▼ <b>A reforzar:</b> ${esc(sc[0].l)} (${sc[0].a.toFixed(0)}%)</div>`:''}</div></div>
+<h3 style="margin-top:14px">Desempeño por competencia</h3>${barSVG(cr,esc(r.name.split(' ')[0]),'Promedio del grupo')}<h3>Desempeño por campo formativo</h3>${barSVG(fr,esc(r.name.split(' ')[0]),'Promedio del grupo')}<h3>Respuestas por reactivo</h3>${strip(r)}<div class="muted small">Verde: correcta · Rojo: incorrecta · Gris: sin responder</div></div>`}
+function groupPage(res){if(!res.length)return '<div class="card empty">Aún no hay resultados. Escanea hojas para generar informes.</div>';const sorted=[...res].sort((a,b)=>b.pct-a.pct),avg=res.reduce((a,x)=>a+x.pct,0)/res.length,bins=[0,0,0,0,0];res.forEach(r=>bins[Math.min(4,Math.floor(r.pct/20))]++);const mx=Math.max(...bins,1);
+let hist=`<svg viewBox="0 0 300 130" style="width:100%;max-width:340px" font-family="Arial" font-size="11" text-anchor="middle">`+bins.map((b,i)=>`<rect x="${i*58+8}" y="${100-b/mx*85}" width="48" height="${b/mx*85}" rx="4" fill="#4338ca"/><text x="${i*58+32}" y="${96-b/mx*85}">${b}</text><text x="${i*58+32}" y="118" fill="#667085">${i*20}–${i*20+20}%</text>`).join('')+'</svg>';
+return `<div class="card report-page"><h2 style="margin:0">Resumen grupal · ${esc(state.examName)}</h2><div class="muted">${res.length} alumnos · promedio ${avg.toFixed(1)}% · máxima ${sorted[0].pct.toFixed(0)}% · mínima ${sorted[sorted.length-1].pct.toFixed(0)}%</div><div class="grid two" style="margin-top:12px"><div><h3>Distribución de resultados</h3>${hist}</div><div><h3>Competencias (grupo)</h3>${barSVG(Object.entries(groupAgg(res,'competency')).map(([l,e])=>({l,a:e.ok/e.n*100,b:null})))}</div></div><h3>Ranking de alumnos</h3>${barSVG(sorted.map(r=>({l:r.name,a:r.pct,b:null})))}</div>`}
+function renderReport(){const res=latestResults(),sel=$('reportSel');sel.innerHTML='<option value="__group">Resumen grupal</option><option value="__all">Todos (una hoja por alumno)</option>'+res.map(r=>`<option value="${r.id}">${esc(r.name)}</option>`).join('');if(!sel.querySelector(`[value="${reportSel}"]`))reportSel='__group';sel.value=reportSel;const sorted=[...res].sort((a,b)=>b.pct-a.pct),pg=r=>reportPage(r,sorted.indexOf(r)+1,res.length,res);
+$('reportHost').innerHTML=reportSel==='__group'?groupPage(res):reportSel==='__all'?groupPage(res)+sorted.map(pg).join(''):pg(res.find(r=>r.id===reportSel)||res[0])}
+$('reportSel').addEventListener('change',e=>{reportSel=e.target.value;renderReport()});$('printReport').addEventListener('click',()=>window.print());
+
+syncSettings();renderStats();renderKey();renderStudents();renderStudentSelect();renderPrint();renderResults();renderVersions();
+</script>
+<script>
+// Ayuda de instalación en iOS, almacenamiento persistente y registro PWA (requiere HTTPS o localhost).
+(function(){
+  const ua=navigator.userAgent,ios=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),standalone=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+  let closed=false;try{closed=localStorage.getItem('eduscan-install-tip')==='1'}catch(e){}
+  if(ios&&!standalone&&!closed){
+    const safari=/Safari/.test(ua)&&!/CriOS|FxiOS|EdgiOS|OPiOS|GSA\//.test(ua);
+    document.getElementById('installMsg').textContent=safari?' Toca Compartir (el cuadro con la flecha ↑), elige “Añadir a pantalla de inicio” y pulsa “Añadir”.':' Abre esta dirección en Safari, toca Compartir (↑) y elige “Añadir a pantalla de inicio”.';
+    document.getElementById('installTip').classList.remove('hidden');
+  }
+  document.getElementById('installClose').addEventListener('click',()=>{document.getElementById('installTip').classList.add('hidden');try{localStorage.setItem('eduscan-install-tip','1')}catch(e){}});
+  if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
+  if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){
+    window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(err=>console.warn('No se pudo registrar el modo offline:',err)));
+  }
+})();
+</script>
+</body></html>
